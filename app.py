@@ -16,9 +16,7 @@ def webhook():
 	 #fileread(filename)
     return jsonify({'language':language})
 
-def filered(filename)
-  data = pd.read_csv(filename)
-  return data
+
 @app.route('/sign_s3/')
 def sign_s3():
   S3_BUCKET = os.environ.get('S3_BUCKET')
