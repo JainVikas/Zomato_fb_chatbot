@@ -14,7 +14,8 @@ def webhook():
 	 # filename= filepath
 	 
 	 #fileread(filename)
-    return jsonify({'language':language})
+	data = pd.read_csv("https://raw.githubusercontent.com/JainVikas/files/master/iris.csv"
+    return jsonify({'data':data})
 
 
 @app.route('/sign_s3/')
