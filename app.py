@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify
 import os, json, boto3
 import pandas as pd
 
@@ -16,7 +16,7 @@ def webhook():
 	 #fileread(filename)
     url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
     dataset = pd.read_csv(url, names=names)
-    return jsonify({'data':dataset[:,1]})
+    return dataset
 
 
 @app.route('/sign_s3/')
