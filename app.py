@@ -2,8 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 import os, json, boto3
 import pandas as pd
 
-#data= pd.dataframe();
-#filename="";
+data= pd.DataFrame();
+filename="";
 app = Flask(__name__)
 language = [{'name':'JS'},{'name':'python'}]
 @app.route('/webhook', methods=['GET'])
