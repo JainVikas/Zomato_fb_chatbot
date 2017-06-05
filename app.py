@@ -16,7 +16,7 @@ def webhook():
 	 #fileread(filename)
     url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
     dataset = pd.read_csv(url, names=names)
-    return dataset
+    return dataset[["5.1"]]
 
 
 @app.route('/sign_s3/')
