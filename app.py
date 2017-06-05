@@ -1,11 +1,24 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 import os, json, boto3
+import pandas as pd
 
+data= pd.dataframe();
+filename="";
 app = Flask(__name__)
-@app.route('/account')
-def account():
-    return render_template('index.html')
+language = [{'name':'JS'},{'name':'python'}]
+@app.route('/webhook', methods=['GET'])
+def webhook():
+   # req = request.get_json(silent=True, force=True)
+	#filepath = request.get("filename")
+	#if filepath != filename:
+	 # filename= filepath
+	 
+	 #fileread(filename)
+    return jsonify({'language':language})
 
+def filered(filename)
+  data = pd.read_csv(filename)
+  return data
 @app.route('/sign_s3/')
 def sign_s3():
   S3_BUCKET = os.environ.get('S3_BUCKET')
