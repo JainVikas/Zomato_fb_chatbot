@@ -18,7 +18,7 @@ def webhook():
     
     names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
     dataset = pd.read_csv(url, names=names)  
-    return dataset[["class"]]
+    return jasonify(dataset[["class"]])
 
 
 @app.route('/sign_s3/')
