@@ -26,8 +26,8 @@ def webhook():
     dataset = pd.read_csv(filepath, names=names) 
     data = dataset
     array = data.values
-    X = array[:,0:]
-    Y = array[:,-1]
+    X = array[:,0:4]
+    Y = array[:,4]
     validation_size = 0.20
     seed = 7
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
@@ -47,17 +47,6 @@ def webhook():
     #accuracy_score(Y_validation, predictions)
     return jsonify({'column': score})
 
-
-def modelselection(model):
-    return{
-      "LR": LogisticRegression(),
-      "LDA": LinearDiscriminantAnalysis(),
-      "KNN": KNeighborsClassifier(),
-      "CART": DecisionTreeClassifier(),
-      "NB": GaussianNB(),
-      "SVM": SVC(),
-      }[model] 
-	  
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
   app.run(host='0.0.0.0', port = port)
