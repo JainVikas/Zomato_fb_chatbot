@@ -17,8 +17,9 @@ def webhook():
     url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
     
     names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
-    dataset = pd.read_csv(url, names=names)  
-    return jasonify(dataset[["class"]])
+    dataset = pd.read_csv(url, names=names) 
+    list = list(dataset)	
+    return jasonify({'list':list})
 
 
 @app.route('/sign_s3/')
