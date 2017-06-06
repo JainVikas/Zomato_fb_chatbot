@@ -8,7 +8,7 @@ app = Flask(__name__)
 language = [{'name':'JS'},{'name':'python'}]
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    filepath = request.json["filename"]
+    filepath = request.json['filename']
     if filepath != filename:
       filename= filepath
       data = pd.read_csv(filename) 
