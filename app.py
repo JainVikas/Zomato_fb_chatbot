@@ -19,19 +19,23 @@ language = [{'name':'JS'},{'name':'python'}]
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
+#read filename/path from Json   
     filepath = req.get("filename")
+	#read dependant variable(6/6/17: not used right now)
     dependant = req.get("dependant")
+    #read user choice of model
     model = req.get("model")
-    names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
-    dataset = pd.read_csv(filepath, names=names) 
+    #names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
+    dataset = pd.read_csv(filepath)#, names=names) 
     data = dataset
     array = data.values
     X = array[:,0:4]
     Y = array[:,4]
     validation_size = 0.20
     seed = 7
+#Spliting  data into 80/20 train_test_split
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
-   
+# Dictionary to select model based on user input  
     Models = {
       "LR": LogisticRegression(),
       "LDA": LinearDiscriminantAnalysis(),
@@ -41,8 +45,11 @@ def webhook():
       "SVM": SVC(),
       }
     selectedModel = Models[model]	
+# training User selected model	
     selectedModel.fit(X_train, Y_train)
+# Prediction based on validation data    
     predictions = selectedModel.predict(X_validation)
+# checking prediction accuracy    
     score = str(accuracy_score(Y_validation, predictions))
     return jsonify({'column': score})
 
