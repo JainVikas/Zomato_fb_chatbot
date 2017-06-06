@@ -15,13 +15,13 @@ def webhook():
     dataset = pd.read_csv(filepath, names=names) 
     data = dataset
     l1 = list(data)
-    res = predictVariable(data, dependant)
+    res = predictVariable(data)
     return jsonify({'coulumn':res })
 
 
-def predictVariable(data, dependant):
+def predictVariable(data):
   
-  return jsonify(10)	
+  return jsonify("10")	
  
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
