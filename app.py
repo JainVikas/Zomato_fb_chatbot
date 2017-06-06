@@ -31,7 +31,16 @@ def webhook():
     validation_size = 0.20
     seed = 7
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
-    selectedModel = modelselection(model)	
+   
+    Models = {
+      "LR": LogisticRegression(),
+      "LDA": LinearDiscriminantAnalysis(),
+      "KNN": KNeighborsClassifier(),
+      "CART": DecisionTreeClassifier(),
+      "NB": GaussianNB(),
+      "SVM": SVC(),
+      }
+    selectedModel = Models[model]	
     selectedModel.fit(X_train, Y_train)
     predictions = selectedModel.predict(X_validation)
     score = '10' 
