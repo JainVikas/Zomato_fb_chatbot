@@ -15,7 +15,6 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 
 app = Flask(__name__)
-language = [{'name':'JS'},{'name':'python'}]
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
@@ -26,14 +25,15 @@ def webhook():
     #read user choice of model
     model = req.get("model")
     #newdata= np.array(req.get("newdata"))
-    newdata = np.array(req.get("newdata"))
+    newdata = req.get("newdata")
     names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
     dataset = pd.read_csv(filepath, names=names) 
     data = dataset
     L1 = list(data)
     array = data.values
-    X = array[:,0:4]
-    Y = array[:,4]
+#dividing X and y, considering Class is the last column
+    X = array[:,0:-1]
+    Y = array[:,-1]
     validation_size = 0.20
     seed = 7
 # Spliting  data into 80/20 train_test_split
