@@ -9,7 +9,8 @@ language = [{'name':'JS'},{'name':'python'}]
 def webhook():
     req = request.get_json(silent=True, force=True)
     filepath = req.get("filename")
-	dependant = reg.get("dependant")
+    dependant = reg.get("dependant")
+    model = req.get("model")
     names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
     dataset = pd.read_csv(filepath, names=names) 
     data = dataset
