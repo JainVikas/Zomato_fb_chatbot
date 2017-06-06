@@ -54,7 +54,7 @@ def webhook():
     predictions = selectedModel.predict(X_validation)
 # Checking prediction accuracy    
     score = accuracy_score(Y_validation, predictions)
-    category = selectedModel.predict(newdata)
+    #category = selectedModel.predict(newdata)
     return jsonify({'column': newdata})
 
 if __name__ == '__main__':
