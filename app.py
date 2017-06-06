@@ -20,8 +20,8 @@ def webhook():
 
 
 def predictVariable(data):
-  
-  return jsonify("10")	
+  x="10"
+  return x
  
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
