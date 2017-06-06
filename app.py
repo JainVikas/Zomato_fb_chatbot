@@ -12,16 +12,16 @@ def webhook():
     filepath = req.get("filename")
     names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
     dataset = pd.read_csv(filepath, names=names) 
-    data.update(dataset)
-    l1 = list(data)	
+    data = dataset
+    l1 = list(data)
     return jsonify({'coulumn':l1})
 
 
-@app.route('/predict', methods = ['POST'])
+@app.route('/predict', methods = ['GET'])
 def predictVariable():
   req = request.get_json(silent=True, force=True)
-  
-  return json
+  l1 = list(data)
+  return jsonify(l1)
  
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
