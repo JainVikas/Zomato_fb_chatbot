@@ -43,8 +43,7 @@ def webhook():
     selectedModel = Models[model]	
     selectedModel.fit(X_train, Y_train)
     predictions = selectedModel.predict(X_validation)
-    score = '10' 
-    #accuracy_score(Y_validation, predictions)
+    score = str(accuracy_score(Y_validation, predictions))
     return jsonify({'column': score})
 
 if __name__ == '__main__':
