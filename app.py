@@ -2,26 +2,25 @@ from flask import Flask, flash, redirect, render_template, request, session, abo
 import os, json, boto3
 import pandas as pd
 
-data= pd.DataFrame();
-filename="";
+
 app = Flask(__name__)
 language = [{'name':'JS'},{'name':'python'}]
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
     filepath = req.get("filename")
+	dependant = reg.get("dependant"
     names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
     dataset = pd.read_csv(filepath, names=names) 
     data = dataset
     l1 = list(data)
-    return jsonify({'coulumn':l1})
+    res = predictVariable(data, dependant)
+    return jsonify({'coulumn':res })
 
 
-@app.route('/predict', methods = ['GET'])
-def predictVariable():
-  req = request.get_json(silent=True, force=True)
-  l1 = list(data)
-  return jsonify(l1)
+def predictVariable(data, dependant):
+  
+  return jsonify(10)	
  
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
