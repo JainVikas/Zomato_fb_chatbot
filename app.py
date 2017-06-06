@@ -32,9 +32,10 @@ def webhook():
     seed = 7
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
     selectedModel = modelselection(model)	
-    model.fit(X_train, Y_train)
-    predictions = model.predict(X_validation)
-    score = 10#accuracy_score(Y_validation, predictions)
+    selectedModel.fit(X_train, Y_train)
+    predictions = selectedModel.predict(X_validation)
+    score = '10' 
+    #accuracy_score(Y_validation, predictions)
     return jsonify({'column': score})
 
 
