@@ -25,8 +25,8 @@ def webhook():
     dependant = req.get("dependant")
     #read user choice of model
     model = req.get("model")
-    #names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
-    dataset = pd.read_csv(filepath)#, names=names) 
+    names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
+    dataset = pd.read_csv(filepath, names=names) 
     data = dataset
     L1 = list(data)
     array = data.values
@@ -34,7 +34,7 @@ def webhook():
     Y = array[:,4]
     validation_size = 0.20
     seed = 7
-#Spliting  data into 80/20 train_test_split
+# Spliting  data into 80/20 train_test_split
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
 # Dictionary to select model based on user input  
     Models = {
@@ -46,11 +46,11 @@ def webhook():
       "SVM": SVC(),
       }
     selectedModel = Models[model]	
-# training User selected model	
+# Training User selected model	
     selectedModel.fit(X_train, Y_train)
 # Prediction based on validation data    
     predictions = selectedModel.predict(X_validation)
-# checking prediction accuracy    
+# Checking prediction accuracy    
     score = str(accuracy_score(Y_validation, predictions))
     return jsonify({'column': L1})
 
