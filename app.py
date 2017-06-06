@@ -8,11 +8,10 @@ app = Flask(__name__)
 language = [{'name':'JS'},{'name':'python'}]
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    req = request.get_json(silent=True, force=True)
-    filepath = request.get("filename")
+    filepath = request.json["filename"]
     if filepath != filename:
       filename= filepath
-      data = dataset = pd.read_csv(filename) 
+      data = pd.read_csv(filename) 
     #fileread(filename)
     l1 = list(data)	
     return jsonify({'list':data})
