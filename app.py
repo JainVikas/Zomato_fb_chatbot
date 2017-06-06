@@ -18,7 +18,8 @@ def webhook():
     
     names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
     dataset = pd.read_csv(url, names=names) 
-    l1 = list(dataset)	
+    data = dataset
+    l1 = list(data)	
     return jsonify({'list':l1})
 
 
