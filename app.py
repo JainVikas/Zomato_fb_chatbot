@@ -36,8 +36,15 @@ def webhook():
 
 
 def modelselection(model):
-    return{'LR': LogisticRegression(),'LDA': LinearDiscriminantAnalysis(),'KNN': KNeighborsClassifier(),'CART': DecisionTreeClassifier(),'NB': GaussianNB(),'SVM', SVC()}[model]
- 
+    return{
+      'LR': LogisticRegression(),
+      'LDA': LinearDiscriminantAnalysis(),
+      'KNN': KNeighborsClassifier(),
+      'CART': DecisionTreeClassifier(),
+      'NB': GaussianNB(),
+      'SVM', SVC()
+      }[model]
+	  
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
   app.run(host='0.0.0.0', port = port)
