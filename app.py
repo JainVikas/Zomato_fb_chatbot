@@ -22,7 +22,7 @@ def webhook():
     return jsonify({'list':filename})
 
 
-@app.route('/predict', method = ['POST'])
+@app.route('/predict', methods = ['POST'])
 def predictVariable():
   req = request.get_json(silent=True, force=True)
   
