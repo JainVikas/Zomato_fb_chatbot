@@ -25,7 +25,8 @@ def webhook():
     dependant = req.get("dependant")
     #read user choice of model
     model = req.get("model")
-    newdata= np.array(req.get("newdata"))
+    #newdata= np.array(req.get("newdata"))
+    newdata = np.array([[5.0, 2.0, 4.0, 1.9]])
     names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
     dataset = pd.read_csv(filepath, names=names) 
     data = dataset
