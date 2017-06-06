@@ -11,7 +11,7 @@ def webhook():
     req = request.get_json(silent=True, force=True)
     filepath = req.get("filename")
     names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
-    dataset = pd.read_csv(filepath), names=names) 
+    dataset = pd.read_csv(filepath, names=names) 
     data.update(dataset)
     l1 = list(data)	
     return jsonify({'coulumn':l1})
