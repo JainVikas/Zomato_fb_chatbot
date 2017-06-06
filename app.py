@@ -31,8 +31,8 @@ def webhook():
     validation_size = 0.20
     seed = 7
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
-    res = modelselection(model)	
-    return jsonify({'coulumn': res})
+    #res = modelselection(model)	
+    return jsonify({'coulumn': model})
 
 
 def modelselection(model):
