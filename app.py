@@ -54,7 +54,7 @@ def webhook():
 # Checking prediction accuracy    
     score = accuracy_score(Y_validation, predictions)
     category = selectedModel.predict(newdata)
-    return jsonify({'column': newdata})
+    return jsonify({'column': category})
 
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
