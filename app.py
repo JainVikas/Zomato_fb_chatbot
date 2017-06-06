@@ -42,7 +42,7 @@ def modelselection(model):
       'KNN': KNeighborsClassifier(),
       'CART': DecisionTreeClassifier(),
       'NB': GaussianNB(),
-      'SVM', SVC()
+      'SVM': SVC()
       }[model]
 	  
 if __name__ == '__main__':
