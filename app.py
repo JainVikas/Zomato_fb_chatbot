@@ -14,7 +14,7 @@ def webhook():
       data = pd.read_csv(filename) 
     #fileread(filename)
     l1 = list(data)	
-    return jsonify({'list':data})
+    return jsonify({'list':l1})
 
 
 @app.route('/sign_s3/')
