@@ -10,16 +10,11 @@ language = [{'name':'JS'},{'name':'python'}]
 def webhook():
     req = request.get_json(silent=True, force=True)
     filepath = req.get("filename")
-    if filepath != filename:
-      filename= filepath
-	 
-	 #fileread(filename)
-    url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
     names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
-    dataset = pd.read_csv(url, names=names) 
+    dataset = pd.read_csv(filepath, names=names) 
     data = dataset
     l1 = list(data)	
-    return jsonify({'list':filename})
+    return jsonify({'list':l1})
 
 
 @app.route('/predict', methods = ['POST'])
