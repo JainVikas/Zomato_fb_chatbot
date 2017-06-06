@@ -28,6 +28,7 @@ def webhook():
     #names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
     dataset = pd.read_csv(filepath)#, names=names) 
     data = dataset
+    L1 = list(data)
     array = data.values
     X = array[:,0:4]
     Y = array[:,4]
@@ -51,7 +52,7 @@ def webhook():
     predictions = selectedModel.predict(X_validation)
 # checking prediction accuracy    
     score = str(accuracy_score(Y_validation, predictions))
-    return jsonify({'column': score})
+    return jsonify({'column': L1})
 
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
