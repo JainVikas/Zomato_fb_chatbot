@@ -31,18 +31,21 @@ def webhook():
     validation_size = 0.20
     seed = 7
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
-    res = modelselection(model)	
-    return jsonify({'column': res})
+    selectedModel = modelselection(model)	
+    model.fit(X_train, Y_train)
+    predictions = model.predict(X_validation)
+    score = 10#accuracy_score(Y_validation, predictions)
+    return jsonify({'column': score})
 
 
 def modelselection(model):
     return{
-      "LR": "LogisticRegression()",
-      "LDA": "LinearDiscriminantAnalysis()",
-      "KNN": "KNeighborsClassifier()",
-      "CART": "DecisionTreeClassifier()",
-      "NB": "GaussianNB()",
-      "SVM": "SVC()",
+      "LR": LogisticRegression(),
+      "LDA": LinearDiscriminantAnalysis(),
+      "KNN": KNeighborsClassifier(),
+      "CART": DecisionTreeClassifier(),
+      "NB": GaussianNB(),
+      "SVM": SVC(),
       }[model] 
 	  
 if __name__ == '__main__':
