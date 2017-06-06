@@ -53,8 +53,9 @@ def webhook():
     predictions = selectedModel.predict(X_validation)
 # Checking prediction accuracy    
     score = accuracy_score(Y_validation, predictions)
+    reshaped = newdata.reshape(1,-1)
     category = selectedModel.predict(newdata)
-    return jsonify({'column': category})
+    return jsonify({'column': type(newdata),'reshape':type(reshaped), 'category':category })
 
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
