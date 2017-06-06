@@ -26,7 +26,7 @@ def webhook():
     #read user choice of model
     model = req.get("model")
     #newdata= np.array(req.get("newdata"))
-    newdata = np.array([[5.0, 2.0, 4.0, 1.9]])
+    newdata = np.array(req.get("newdata"))
     names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
     dataset = pd.read_csv(filepath, names=names) 
     data = dataset
@@ -55,7 +55,7 @@ def webhook():
 # Checking prediction accuracy    
     score = accuracy_score(Y_validation, predictions)
     category = selectedModel.predict(newdata)
-    return jsonify({'column': newdata,'category':category})
+    return jsonify({'column': newdata})
 
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
