@@ -31,19 +31,19 @@ def webhook():
     validation_size = 0.20
     seed = 7
     X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
-    model = modelselection(model)	
-    return jsonify({'coulumn': str(model)})
+    res = modelselection(model)	
+    return jsonify({'coulumn': res})
 
 
 def modelselection(model):
     return{
-      'LR': LogisticRegression(),
-      'LDA': LinearDiscriminantAnalysis(),
-      'KNN': KNeighborsClassifier(),
-      'CART': DecisionTreeClassifier(),
-      'NB': GaussianNB(),
-      'SVM': SVC()
-      }[model]
+      'LR': 'LogisticRegression()',
+      'LDA': 'LinearDiscriminantAnalysis()',
+      'KNN': 'KNeighborsClassifier()',
+      'CART': 'DecisionTreeClassifier()',
+      'NB': 'GaussianNB()',
+      'SVM': 'SVC()',
+      }[model] 
 	  
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5000))
