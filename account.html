@@ -2,26 +2,26 @@
 <head> 
 	<title> file upload</title>
 	<script>
-	function() {
-	document.getElementById("file_input").onchange = function(){
+(function() {
+  document.getElementById("file_input").onchange = function(){
     var files = document.getElementById("file_input").files;
     var file = files[0];
     if(!file){
       return alert("No file selected.");
     }
     getSignedRequest(file);
-	};
-	}();
+  };
+})();
 	
-	function getSignedRequest(file){
-	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "/sign_s3?file_name="+file.name+"&file_type="+file.type);
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState === 4){
-		if(xhr.status === 200){
-			var response = JSON.parse(xhr.responseText);
-			uploadFile(file, response.data, response.url);
-		}
+function getSignedRequest(file){
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "/sign_s3?file_name="+file.name+"&file_type="+file.type);
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState === 4){
+      if(xhr.status === 200){
+        var response = JSON.parse(xhr.responseText);
+        uploadFile(file, response.data, response.url);
+      }
       else{
         alert("Could not get signed URL.");
       }
@@ -29,7 +29,6 @@
   };
   xhr.send();
 }
-
 function uploadFile(file, s3Data, url){
   var xhr = new XMLHttpRequest();
   xhr.open("POST", s3Data.url);
@@ -57,6 +56,15 @@ function uploadFile(file, s3Data, url){
 </head>
 <body>
 <input type="file" id="file_input"/>
+<p id="status">Please select a file</p>
+<img id="preview" src="/static/default.png" />
+
+<form method="POST" action="/submit_form/">
+  <input type="hidden" id="avatar-url" name="avatar-url" value="/static/default.png">
+  <input type="text" name="username" placeholder="Username">
+  <input type="text" name="full-name" placeholder="Full name">
+  <input type="submit" value="Update profile">
+</form>
 </body>
 
 </html>

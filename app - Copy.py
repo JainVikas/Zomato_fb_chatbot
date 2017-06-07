@@ -15,9 +15,6 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 
 app = Flask(__name__)
-@app.route("/account/")
-def account():
-    return render_template('index.html')
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
@@ -59,42 +56,15 @@ def webhook():
     score = accuracy_score(Y_validation, predictions)
     return jsonify({'score':score})
 #AWS s3 bucket for file uploads to be read later by webhook
-
-@app.route('/sign_s3/')
-def sign_s3():
-  S3_BUCKET = os.environ.get('S3_BUCKET')
-
-  file_name = request.args.get('file_name')
-  file_type = request.args.get('file_type')
-
-  s3 = boto3.client('s3')
-
-  presigned_post = s3.generate_presigned_post(
-    Bucket = S3_BUCKET,
-    Key = file_name,
-    Fields = {"acl": "public-read", "Content-Type": file_type},
-    Conditions = [
-      {"acl": "public-read"},
-      {"Content-Type": file_type}
-    ],
-    ExpiresIn = 3600
-  )
-
-  return json.dumps({
-    'data': presigned_post,
-    'url': 'https://%s.s3.amazonaws.com/%s' % (S3_BUCKET, file_name)
-  })
-
-
 @app.route("/upload",methods = ['POST','GET'])
 def upload(): 
     if request.method == 'POST':
-        file = request.files['file']
-        filename = file.filename
-        s3 = boto.connect_s3()
-        bucket = s3.create_bucket(S3_BUCKET)
-        key = bucket.new_key(filename)
-        key.set_contents_from_file(file, headers=None, replace=True, cb=None, num_cb=10, policy=None, md5=None) 
+        #file = request.files['file']
+        #filename = file.filename
+        #s3 = boto.connect_s3()
+        #bucket = s3.create_bucket('python-app-bucket-upload')
+        #key = bucket.new_key(filename)
+        #key.set_contents_from_file(file, headers=None, replace=True, cb=None, num_cb=10, policy=None, md5=None) 
         return jsonify({'status':'successfully uploaded'})
     return jsonify({'score':'correct'})
       
