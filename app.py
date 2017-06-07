@@ -15,8 +15,10 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 
 app = Flask(__name__)
-@app.route('/account/)
-	
+@app.route('/account/')
+def account():
+    return render_template('account.html')
+@app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
 #read filename/path from Json   
@@ -58,6 +60,30 @@ def webhook():
     return jsonify({'score':score})
 #AWS s3 bucket for file uploads to be read later by webhook
 
+@app.route('/sign_s3/')
+def sign_s3():
+  S3_BUCKET = os.environ.get('S3_BUCKET')
+
+  file_name = request.args.get('file_name')
+  file_type = request.args.get('file_type')
+
+  s3 = boto3.client('s3')
+
+  presigned_post = s3.generate_presigned_post(
+    Bucket = S3_BUCKET,
+    Key = file_name,
+    Fields = {"acl": "public-read", "Content-Type": file_type},
+    Conditions = [
+      {"acl": "public-read"},
+      {"Content-Type": file_type}
+    ],
+    ExpiresIn = 3600
+  )
+
+  return json.dumps({
+    'data': presigned_post,
+    'url': 'https://%s.s3.amazonaws.com/%s' % (S3_BUCKET, file_name)
+  })
 
 
 @app.route("/upload",methods = ['POST','GET'])
