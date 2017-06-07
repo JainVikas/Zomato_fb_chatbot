@@ -14,15 +14,7 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 #rendering page
-import warnings
-import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.cross_validation import train_test_split
-from sklearn.metrics import mean_squared_error
-from statsmodels.tsa.arima_model import ARIMA
-import datetime
-from astropy.version import debug
-from werkzeug import secure_filename
+
 ############################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
 app = Flask(__name__)
 @app.route('/account/')
