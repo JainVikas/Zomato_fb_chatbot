@@ -67,7 +67,7 @@ def upload():
         key = bucket.new_key(filename)
         key.set_contents_from_file(file, headers=None, replace=True, cb=None, num_cb=10, policy=None, md5=None) 
         return 'successful upload'''
-    return 'upload failed'
+    return jsonify({'score'})
       
     
 if __name__ == '__main__':
