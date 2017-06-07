@@ -25,7 +25,7 @@ def webhook():
     #read user choice of model
     model = req.get("model")
     #newdata= np.array(req.get("newdata"))
-    newdata = json.loads(req.get("newdata"))	
+    #newdata = json.loads(req.get("newdata"))	
     names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
     dataset = pd.read_csv(filepath, names=names) 
     data = dataset
@@ -56,7 +56,7 @@ def webhook():
     score = accuracy_score(Y_validation, predictions)
     return jsonify({'score':score})
 #AWS s3 bucket for file uploads to be read later by webhook
-@app.route("/upload",methods = ['GET'])
+@app.route("/upload",methods = ['POST','GET'])
 def upload(): 
     if request.method == 'POST':
         #file = request.files['file']
