@@ -15,7 +15,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 
 app = Flask(__name__)
-@app.route("/account")
+@app.route('/account/')
 def account():
     return render_template('account.html')
 @app.route('/webhook', methods=['POST'])
