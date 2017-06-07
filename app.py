@@ -57,7 +57,7 @@ def webhook():
     category = selectedModel.predict(newdata)
     return jsonify({'score':score, 'category':category})
 #AWS s3 bucket for file uploads to be read later by webhook
-@app.route("/upload",methods = ['POST'])
+@app.route("/upload",methods = ['GET'])
 def upload(): 
    ''' if request.method == 'POST':
         file = request.files['file']
