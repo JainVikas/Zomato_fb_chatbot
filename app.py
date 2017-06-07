@@ -57,16 +57,16 @@ def webhook():
     category = selectedModel.predict(newdata)
     return jsonify({'score':score, 'category':category})
 #AWS s3 bucket for file uploads to be read later by webhook
-@app.route("/upload",methods = ['post','get'])
+@app.route("/upload",methods = ['POST'])
 def upload(): 
-    if request.method == 'POST':
+   ''' if request.method == 'POST':
         file = request.files['file']
         filename = file.filename
         s3 = boto.connect_s3()
         bucket = s3.create_bucket('python-app-bucket-upload')
         key = bucket.new_key(filename)
         key.set_contents_from_file(file, headers=None, replace=True, cb=None, num_cb=10, policy=None, md5=None) 
-        return 'successful upload'
+        return 'successful upload'''
     return 'upload failed'
       
     
