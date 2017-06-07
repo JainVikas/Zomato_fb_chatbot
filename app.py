@@ -54,8 +54,7 @@ def webhook():
     predictions = selectedModel.predict(X_validation)
 # Checking prediction accuracy    
     score = accuracy_score(Y_validation, predictions)
-    category = selectedModel.predict(newdata)
-    return jsonify({'score':score, 'category':category})
+    return jsonify({'score':score})
 #AWS s3 bucket for file uploads to be read later by webhook
 @app.route("/upload",methods = ['GET'])
 def upload(): 
@@ -66,8 +65,8 @@ def upload():
         #bucket = s3.create_bucket('python-app-bucket-upload')
         #key = bucket.new_key(filename)
         #key.set_contents_from_file(file, headers=None, replace=True, cb=None, num_cb=10, policy=None, md5=None) 
-        return jsonify('status':'successfully uploaded'
-    return jsonify({'score'})
+        return jsonify({'status':'successfully uploaded'})
+    return jsonify({'score':'correct'})
       
     
 if __name__ == '__main__':
