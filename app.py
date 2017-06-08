@@ -69,8 +69,8 @@ def upload():
     if request.method == 'POST':
         file = request.files['file']
         filename = secure_filename(file.filename)
-        s3 = boto3.resource('s3', aws_access_key_id= 'AKIAIBKBOVF6DTJ3LPQQ', aws_secret_access_key='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',config=Config(signature_version='s3v4'))
-        s3.Bucket('python-app-bucket-upload').upload_file(file,filename)
+        #s3 = boto3.resource('s3', aws_access_key_id= 'AKIAIBKBOVF6DTJ3LPQQ', aws_secret_access_key='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',config=Config(signature_version='s3v4'))
+       # s3.Bucket('python-app-bucket-upload').upload_file(file,filename)
         return 'successful upload'
     return jsonify({'score':'correct'})
       
