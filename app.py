@@ -1,4 +1,4 @@
-from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify
+from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, redirect, url_for
 import os, json, boto3
 import pandas as pd
 from pandas.tools.plotting import scatter_matrix
@@ -14,7 +14,7 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 #rendering page
-
+from werkzeug.utils import secure_filename
 ############################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
 app = Flask(__name__)
 @app.route('/account/')
@@ -97,12 +97,13 @@ def sign_s3():
 def upload(): 
     if request.method == 'POST':
         file = request.files['file']
-        filename = file.filename
-        s3 = boto.connect_s3()
-        bucket = s3.create_bucket(S3_BUCKET)
-        key = bucket.new_key(filename)
-        key.set_contents_from_file(file, headers=None, replace=True, cb=None, num_cb=10, policy=None, md5=None) 
-        return jsonify({'status':'successfully uploaded'})
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            s3 = boto.connect_s3()
+            bucket = s3.create_bucket('my_bucket')
+            key = bucket.new_key(filename)
+            key.set_contents_from_file(file, headers=None, replace=True, cb=None, num_cb=10, policy=None, md5=None) 
+            return 'successful upload'
     return jsonify({'score':'correct'})
       
     
