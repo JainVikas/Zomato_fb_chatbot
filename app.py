@@ -36,10 +36,11 @@ def webhook():
     dataset = pd.read_csv(filepath) 
     data = dataset
     L1 = list(data)
+    dependantIndex= L1.index(dependant)
     array = data.values
 #dividing X and y, considering Class is the last column
     X = array[:,0:-1]
-    Y = array[:,list1.index(dependant)]
+    Y = array[:,dependantIndex]
     validation_size = 0.20
     seed = 7
 # Spliting  data into 80/20 train_test_split
