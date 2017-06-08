@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<form name = "form" action = "http://localhost:5000/categoryprediction/" method = "post" enctype = "multipart/form-data">
+         
+         <div style = "max-width:470px;">
+            <center> 
+               <input type = "file" style = "margin-left:20%;"  name = "Database" />
+            </center>
+         </div>
+			
+         <br>
+         
+         <div style = "max-width:470px;">
+            <center>
+               <input type = "text" style = "margin-left:20%;" 
+                  placeholder = "Column to Predict" name = "Predict" />
+            </center>
+         </div>
+			
+         <br>
+         
+         <div style = "max-width:470px;">
+            <center> 
+            
+               <button style = "border:50px; margin-top:8%;
+                  height:35px; width:20%;margin-left:19%;" type = "submit" 
+                  value = "Predict" >
+                  <strong>Predict</strong>
+               </button>
+               
+            </center>
+         </div>
+         
+</form>
+	  
+{% endblock %}
