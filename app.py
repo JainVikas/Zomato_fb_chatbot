@@ -39,7 +39,7 @@ def webhook():
     array = data.values
 #dividing X and y, considering Class is the last column
     X = array[:,0:-1]
-    Y = array[:,-1]
+    Y = array[:,list1.index(dependant)]
     validation_size = 0.20
     seed = 7
 # Spliting  data into 80/20 train_test_split
