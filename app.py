@@ -86,8 +86,8 @@ def upload():
 '''
         #s3.Bucket(os.environ.get('S3_BUCKET')).put_object(Key=filename, Body=open(file, 'rb'), ContentEncoding='text/csv')
         #s3.Object(os.environ.get('S3_BUCKET'), filename).put(Body=open(filename, 'rb'))
-        s3.Bucket(os.environ.get('S3_BUCKET')).upload_file(filename,filename)
-        #s3.Bucket('bucket').put_object(Key=filename, Body=file.stream, ContentEncoding='text/csv')
+        #s3.Bucket(os.environ.get('S3_BUCKET')).upload_file(filename,filename)
+        s3.Bucket('bucket').put_object(Key=filename, Body=file.stream, ContentEncoding='text/csv')
         return jsonify({'successful upload':filename, 'S3_BUCKET':os.environ.get('S3_BUCKET'), 'ke':os.environ.get('AWS_ACCESS_KEY_ID'), 'sec':os.environ.get('AWS_SECRET_ACCESS_KEY'),'filepath': "https://s3.us-east-2.amazonaws.com/"+os.environ.get('S3_BUCKET')+"/" +filename})
     return jsonify({'score':'correct'})
       
