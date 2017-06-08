@@ -1,5 +1,10 @@
-from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify
+###################################
+# Updated version which takes user 
+#####################################
+
+from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, redirect, url_for
 import os, json, boto3
+from botocore.client import Config
 import pandas as pd
 from pandas.tools.plotting import scatter_matrix
 import numpy as np
@@ -13,13 +18,21 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
-
+#rendering page
+from werkzeug.utils import secure_filename
+############################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
 app = Flask(__name__)
+@app.route('/account/')
+def account():
+    return render_template('account.html')
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
 #read filename/path from Json   
     filepath = req.get("filename")
+    s3 = boto3.resource('s3', aws_access_key_id= os.environ.get('AWS_ACCESS_KEY_ID'), aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),config=Config(signature_version='s3v4'))
+    s3.Bucket(os.environ.get('S3_BUCKET')).download_file('data',filepath)
+    
 	#read dependant variable(6/6/17: not used right now)
     dependant = req.get("dependant")
     #read user choice of model
@@ -27,7 +40,7 @@ def webhook():
     #newdata= np.array(req.get("newdata"))
     #newdata = json.loads(req.get("newdata"))	
     names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
-    dataset = pd.read_csv(filepath, names=names) 
+    dataset = pd.read_csv(data, names=names) 
     data = dataset
     L1 = list(data)
     array = data.values
@@ -55,17 +68,21 @@ def webhook():
 # Checking prediction accuracy    
     score = accuracy_score(Y_validation, predictions)
     return jsonify({'score':score})
+
+	
+	
 #AWS s3 bucket for file uploads to be read later by webhook
+
 @app.route("/upload",methods = ['POST','GET'])
 def upload(): 
     if request.method == 'POST':
-        #file = request.files['file']
-        #filename = file.filename
-        #s3 = boto.connect_s3()
-        #bucket = s3.create_bucket('python-app-bucket-upload')
-        #key = bucket.new_key(filename)
-        #key.set_contents_from_file(file, headers=None, replace=True, cb=None, num_cb=10, policy=None, md5=None) 
-        return jsonify({'status':'successfully uploaded'})
+        file = request.files['file']
+        filename = secure_filename(file.filename)
+        s3 = boto3.resource('s3', aws_access_key_id= os.environ.get('AWS_ACCESS_KEY_ID'), aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),config=Config(signature_version='s3v4'))
+        data = open(filename, 'rb')
+        s3.Bucket(os.environ.get('S3_BUCKET')).put_object(Key=filename, Body=data)
+        #s3.Bucket(os.environ.get('S3_BUCKET')).upload_file(filename,filename)
+        return jsonify({'successful upload':filename, 'S3_BUCKET':os.environ.get('S3_BUCKET'), 'ke':os.environ.get('AWS_ACCESS_KEY_ID'), 'sec':os.environ.get('AWS_SECRET_ACCESS_KEY'),'filepath': "https://s3.us-east-2.amazonaws.com/"+os.environ.get('S3_BUCKET')+"/" +filename})
     return jsonify({'score':'correct'})
       
     
