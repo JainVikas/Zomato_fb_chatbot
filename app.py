@@ -61,8 +61,10 @@ def webhook():
 # Checking prediction accuracy    
     score = accuracy_score(Y_validation, predictions)
     return jsonify({'score':score})
-#AWS s3 bucket for file uploads to be read later by webhook
 
+	
+	
+#AWS s3 bucket for file uploads to be read later by webhook
 
 @app.route("/upload",methods = ['POST','GET'])
 def upload(): 
@@ -71,7 +73,7 @@ def upload():
         filename = secure_filename(file.filename)
         s3 = boto3.resource('s3', aws_access_key_id= os.environ.get('AWS_ACCESS_KEY_ID'), aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),config=Config(signature_version='s3v4'))
         s3.Bucket(os.environ.get('S3_BUCKET')).upload_file(filename,filename)
-        return jsonify({'successful upload':filename, 'S3_BUCKET':s3, os.environ.get('S3_BUCKET')})
+        return jsonify({'successful upload':filename, 'S3_BUCKET':os.environ.get('S3_BUCKET')})
     return jsonify({'score':'correct'})
       
     
