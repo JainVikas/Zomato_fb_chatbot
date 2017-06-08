@@ -33,8 +33,7 @@ def webhook():
     model = req.get("model")
     #newdata= np.array(req.get("newdata"))
     #newdata = json.loads(req.get("newdata"))	
-    names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
-    dataset = pd.read_csv(filepath, names=names) 
+    dataset = pd.read_csv(filepath) 
     data = dataset
     L1 = list(data)
     array = data.values
@@ -61,7 +60,7 @@ def webhook():
     predictions = selectedModel.predict(X_validation)
 # Checking prediction accuracy    
     score = accuracy_score(Y_validation, predictions)
-    return jsonify({'score':score})
+    return jsonify({'list':L1})
 
 @app.route('/reading', methods = ['GET'])
 def reading():
