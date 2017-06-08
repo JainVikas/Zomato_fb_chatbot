@@ -1,5 +1,6 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, redirect, url_for
 import os, json, boto3
+from botocore.client import Config
 import pandas as pd
 from pandas.tools.plotting import scatter_matrix
 import numpy as np
@@ -62,36 +63,6 @@ def webhook():
     return jsonify({'score':score})
 #AWS s3 bucket for file uploads to be read later by webhook
 
-@app.route('/sign-s3/')
-def sign_s3():
-  # Load necessary information into the application
-  S3_BUCKET = os.environ.get('S3_BUCKET')
-
-  # Load required data from the request
-  file_name = request.args.get('file-name')
-  file_type = request.args.get('file-type')
-
-  # Initialise the S3 client
-  s3 = boto3.client('s3')
-
-  # Generate and return the presigned URL
-  presigned_post = s3.generate_presigned_post(
-    Bucket = S3_BUCKET,
-    Key = file_name,
-    Fields = {"acl": "public-read", "Content-Type": file_type},
-    Conditions = [
-      {"acl": "public-read"},
-      {"Content-Type": file_type}
-    ],
-    ExpiresIn = 3600
-  )
-
-  # Return the data to the client
-  return json.dumps({
-    'data': presigned_post,
-    'url': 'https://%s.s3.amazonaws.com/%s' % (S3_BUCKET, file_name)
-  })
-
 
 @app.route("/upload",methods = ['POST','GET'])
 def upload(): 
@@ -99,10 +70,8 @@ def upload():
         file = request.files['file']
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            s3 = boto.connect_s3()
-            bucket = s3.create_bucket('my_bucket')
-            key = bucket.new_key(filename)
-            key.set_contents_from_file(file, headers=None, replace=True, cb=None, num_cb=10, policy=None, md5=None) 
+			s3 = boto3.resource('s3', aws_access_key_id= 'AKIAIBKBOVF6DTJ3LPQQ', aws_secret_access_key='ir2PEuqxkg6NUP/acmxwaJjmm4RqqOXKa07Pyc4w',config=Config(signature_version='s3v4'))
+            s3.Bucket('python-app-bucket-upload').upload_file(file,filename)
             return 'successful upload'
     return jsonify({'score':'correct'})
       
