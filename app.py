@@ -33,8 +33,7 @@ def webhook():
     model = req.get("model")
     #newdata= np.array(req.get("newdata"))
     #newdata = json.loads(req.get("newdata"))	
-    dataset = pd.read_csv(filepath) 
-    data = dataset
+    data = pd.read_csv(filepath) 
     L1 = list(data)
     dependantIndex= L1.index(dependant)
     array = data.values
