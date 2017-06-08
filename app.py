@@ -79,7 +79,7 @@ def upload():
             }
         client = boto3.client('s3', **credentials)
         transfer = S3Transfer(client)
-        transfer.upload_file(filename, os.environ.get('S3_BUCKET')), filename, extra_args={'ACL': 'public-read'})
+        transfer.upload_file(filename, os.environ.get('S3_BUCKET'), filename, extra_args={'ACL': 'public-read'})
 
 		#s3.Bucket(os.environ.get('S3_BUCKET')).put_object(Key=filename, Body=open(filename, 'rb'), ContentEncoding='text/csv')
         #s3.Object(os.environ.get('S3_BUCKET'), filename).put(Body=open(filename, 'rb'))
