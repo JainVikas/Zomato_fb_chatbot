@@ -1,5 +1,6 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, redirect, url_for
 import os, json, boto3
+from boto3.s3.transfer import S3Transfer
 from botocore.client import Config
 import pandas as pd
 from pandas.tools.plotting import scatter_matrix
@@ -72,8 +73,6 @@ def upload():
         file = request.files['file']
         filename = secure_filename(file.filename)
         #s3 = boto3.resource('s3', aws_access_key_id= os.environ.get('AWS_ACCESS_KEY_ID'), aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),config=Config(signature_version='s3v4'))
-        import boto3
-        from boto3.s3.transfer import S3Transfer
         credentials = { 
             'aws_access_key_id': os.environ.get('AWS_ACCESS_KEY_ID'),
             'aws_secret_access_key': os.environ.get('AWS_SECRET_ACCESS_KEY')
