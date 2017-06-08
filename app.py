@@ -71,7 +71,7 @@ def upload():
         filename = secure_filename(file.filename)
         s3 = boto3.resource('s3', aws_access_key_id= os.environ.get('AWS_ACCESS_KEY_ID'), aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),config=Config(signature_version='s3v4'))
         s3.Bucket(os.environ.get('S3_BUCKET')).upload_file(filename,filename)
-        return jsonify({'successful upload':filename, 's3':s3})
+        return jsonify({'successful upload':filename, 'S3_BUCKET':s3, os.environ.get('S3_BUCKET')})
     return jsonify({'score':'correct'})
       
     
