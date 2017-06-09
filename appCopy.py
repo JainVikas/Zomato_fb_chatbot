@@ -32,7 +32,7 @@ def sumSessionCounter():
 	
 @app.route('/')
 def index():
-    session['user]='vikas'
+    session['user']='vikas'
     return 'Index'
 	
 @app.route('/account')
