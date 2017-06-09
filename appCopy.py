@@ -75,9 +75,10 @@ def webhook():
       }
     selectedModel = Models[model]	
 # Training User selected model	
-    selectedModel.fit(X_train, Y_train)
+    test = selectedModel.fit(X_train, Y_train)
+    session['data']= data.values
 # Prediction based on validation data    
-    predictions = selectedModel.predict(X_validation)
+    predictions = test.predict(X_validation)
 # Checking prediction accuracy    
     score = accuracy_score(Y_validation, predictions)
     return jsonify({'score':score})
@@ -102,7 +103,7 @@ def upload():
         awsFilepath= "https://s3.us-east-2.amazonaws.com/"+os.environ.get('S3_BUCKET')+"/" +filename
         data= pd.read_csv(awsFilepath)
         l1 = list(data)  
-        session['data']= data.values
+        
         return jsonify({'successful upload':filename,'filepath': awsFilepath,'list':l1})
     return jsonify({'score':'correct'})
       
