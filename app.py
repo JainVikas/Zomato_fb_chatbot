@@ -79,7 +79,7 @@ def upload():
         filename = secure_filename(file.filename)
         file.save(filename)
         s3 = boto3.resource('s3', aws_access_key_id= os.environ.get('AWS_ACCESS_KEY_ID'), aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),config=Config(signature_version='s3v4'))
-        s3.Bucket.Acl().put(ACL='public-read')
+        #s3.Bucket.Acl().put(ACL='public-read')
         s3.Bucket(os.environ.get('S3_BUCKET')).upload_file(filename,filename)
         awsFilepath= "https://s3.us-east-2.amazonaws.com/"+os.environ.get('S3_BUCKET')+"/" +filename
         data= pd.read_csv(awsFilepath)
