@@ -25,6 +25,7 @@ def account():
     return render_template('account.html')
 @app.route('/webhook', methods=['POST'])
 def webhook():
+    render_template('layout.html')
     req = request.get_json(silent=True, force=True)
 #read filename/path from Json   
     filepath = req.get("filename")
