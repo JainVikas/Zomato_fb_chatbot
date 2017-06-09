@@ -75,13 +75,12 @@ def webhook():
       }
     selectedModel = Models[model]	
 # Training User selected model	
-    test = selectedModel.fit(X_train, Y_train)
-    session['data']= test
+    selectedModel.fit(X_train, Y_train)
 # Prediction based on validation data    
-    predictions = test.predict(X_validation)
+    predictions = selectedModel.predict(X_validation)
 # Checking prediction accuracy    
     score = accuracy_score(Y_validation, predictions)
-    return jsonify({'score':score, 'session':session['data']})
+    return jsonify({'score':score})
 
 @app.route('/reading', methods = ['GET'])
 def reading():
@@ -103,7 +102,7 @@ def upload():
         awsFilepath= "https://s3.us-east-2.amazonaws.com/"+os.environ.get('S3_BUCKET')+"/" +filename
         data= pd.read_csv(awsFilepath)
         l1 = list(data)  
-        
+        session['data']= SVC()
         return jsonify({'successful upload':filename,'filepath': awsFilepath,'list':l1})
     return jsonify({'score':'correct'})
       
