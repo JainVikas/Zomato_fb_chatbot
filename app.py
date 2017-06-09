@@ -23,7 +23,7 @@ UPLOAD_FOLDER = 'app/.heroku/templates'
 @app.route('/account/')
 def account():
     return render_template('account.html')
-@app.route('/webhook', methods=['POST'])
+@app.route('/webhook', methods=['POST', 'GET'])
 def webhook():
     render_template('layout.html')
     req = request.get_json(silent=True, force=True)
@@ -79,14 +79,6 @@ def upload():
         filename = secure_filename(file.filename)
         #file.save(os.path.join(app.config['templates'], filename))
         s3 = boto3.resource('s3', aws_access_key_id= os.environ.get('AWS_ACCESS_KEY_ID'), aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),config=Config(signature_version='s3v4'))
-        '''credentials = { 
-            'aws_access_key_id': os.environ.get('AWS_ACCESS_KEY_ID'),
-            'aws_secret_access_key': os.environ.get('AWS_SECRET_ACCESS_KEY')
-            }
-        client = boto3.client('s3', **credentials)
-        transfer = S3Transfer(client)
-        transfer.upload_file(filename, os.environ.get('S3_BUCKET'), filename, extra_args={'ACL': 'public-read'})
-'''
         #s3.Bucket(os.environ.get('S3_BUCKET')).put_object(Key=filename, Body=open(file, 'rb'), ContentEncoding='text/csv')
         #s3.Object(os.environ.get('S3_BUCKET'), filename).put(Body=open(filename, 'rb'))
         s3.Bucket(os.environ.get('S3_BUCKET')).upload_file(filename,filename)
