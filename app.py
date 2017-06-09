@@ -79,9 +79,9 @@ def upload():
         filename = secure_filename(file.filename)
         #file.save(os.path.join(app.config['templates'], filename))
         s3 = boto3.resource('s3', aws_access_key_id= os.environ.get('AWS_ACCESS_KEY_ID'), aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),config=Config(signature_version='s3v4'))
-        #s3.Bucket(os.environ.get('S3_BUCKET')).put_object(Key=filename, Body=open(file, 'rb'), ContentEncoding='text/csv')
+        s3.Bucket(os.environ.get('S3_BUCKET')).put_object(Key=filename, Body=open(file, 'rb').stream, ContentEncoding='text/csv')
         #s3.Object(os.environ.get('S3_BUCKET'), filename).put(Body=open(filename, 'rb'))
-        s3.Bucket(os.environ.get('S3_BUCKET')).upload_file(filename,filename)
+        #s3.Bucket(os.environ.get('S3_BUCKET')).upload_file(filename,filename)
        # with open(os.path.join(app.config['templates'], filename), 'rb') as f:
         #    s3.Bucket(os.environ.get('S3_BUCKET')).put_object(Key=filename, Body=f, ContentEncoding='text/csv')
         #s3.Bucket('bucket').put_object(Key=filename, Body=file.stream, ContentEncoding='text/csv')
