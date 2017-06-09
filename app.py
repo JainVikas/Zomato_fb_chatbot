@@ -19,10 +19,19 @@ from sklearn.svm import SVC
 from werkzeug.utils import secure_filename
 ############################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
 app = Flask(__name__)
-UPLOAD_FOLDER = '/'
-@app.route('/account/')
-def account():
+app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'
+def sumSessionCounter():
+    try:
+        session['counter'] += 1
+    except KeyError:
+        session['counter'] = 1
+
+@app.route('/')
+def index():
+    # Initialise the counter, or increment it
+    sumSessionCounter()
     return render_template('account.html')
+
 @app.route('/webhook', methods=['POST', 'GET'])
 def webhook():
     render_template('layout.html')
@@ -84,7 +93,7 @@ def upload():
         awsFilepath= "https://s3.us-east-2.amazonaws.com/"+os.environ.get('S3_BUCKET')+"/" +filename
         data= pd.read_csv(awsFilepath)
         l1 = list(data)  
-        return jsonify({'successful upload':filename,'filepath': awsFilepath,'list':l1, 'data':data})
+        return jsonify({'successful upload':filename,'filepath': awsFilepath,'list':l1, 'data':session})
     return jsonify({'score':'correct'})
       
     
