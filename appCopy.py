@@ -35,7 +35,7 @@ def index():
     session['user']='vikas'
     return 'Index'
 	
-@app.route('/account')
+@app.route('/account/')
 def account():
     # Initialise the counter, or increment it
     
@@ -102,7 +102,8 @@ def upload():
         awsFilepath= "https://s3.us-east-2.amazonaws.com/"+os.environ.get('S3_BUCKET')+"/" +filename
         data= pd.read_csv(awsFilepath)
         l1 = list(data)  
-        return jsonify({'successful upload':filename,'filepath': awsFilepath,'list':l1, 'data':session})
+        session['data']= data
+        return jsonify({'successful upload':filename,'filepath': awsFilepath,'list':l1})
     return jsonify({'score':'correct'})
       
     
