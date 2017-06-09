@@ -76,12 +76,12 @@ def webhook():
     selectedModel = Models[model]	
 # Training User selected model	
     test = selectedModel.fit(X_train, Y_train)
-    session['data']= data.values
+    session['data']= test
 # Prediction based on validation data    
     predictions = test.predict(X_validation)
 # Checking prediction accuracy    
     score = accuracy_score(Y_validation, predictions)
-    return jsonify({'score':score})
+    return jsonify({'score':score, 'session':session['data']})
 
 @app.route('/reading', methods = ['GET'])
 def reading():
