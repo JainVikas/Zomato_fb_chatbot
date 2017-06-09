@@ -84,7 +84,7 @@ def upload():
         awsFilepath= "https://s3.us-east-2.amazonaws.com/"+os.environ.get('S3_BUCKET')+"/" +filename
         data= pd.read_csv(awsFilepath)
         l1 = list(data)  
-        return jsonify({'successful upload':filename,'filepath': awsFilepath,'list':l1)
+        return jsonify({'successful upload':filename,'filepath': awsFilepath,'list':l1})
     return jsonify({'score':'correct'})
       
     
