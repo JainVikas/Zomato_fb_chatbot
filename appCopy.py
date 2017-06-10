@@ -64,7 +64,7 @@ def selectVariable():
     
 @app.route('/selectModel', methods =['POST','GET'])
 def selectModel():
-    model = req.form['model']
+    model = request.form['model']
     filepath = session['data']
     data = pd.read_csv(filepath) 
     L1 = list(data)
