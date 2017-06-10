@@ -62,7 +62,7 @@ def selectVariable():
     #read user choice of model
     return render_template('modelSelection.html')
     
-@app.route('/selectModel', methods =['POST','GET']
+@app.route('/selectModel', methods =['POST','GET'])
 def selectModel():
     model = req.form['model']
     filepath = session['data']
