@@ -49,7 +49,7 @@ def webhook():
 	#read dependant variable(6/6/17: not used right now)
     dependant = request.form['dependant']
     #read user choice of model
-    model = req.get("model")
+    '''model = req.get("model")
     #newdata= np.array(req.get("newdata"))
     #newdata = json.loads(req.get("newdata"))	
     data = pd.read_csv(filepath) 
@@ -78,14 +78,9 @@ def webhook():
 # Prediction based on validation data    
     predictions = selectedModel.predict(X_validation)
 # Checking prediction accuracy    
-    score = accuracy_score(Y_validation, predictions)
+    score = accuracy_score(Y_validation, predictions)'''
     return jsonify({'filename':filepath, 'session value':session['data'],'request':dependant})
 
-@app.route('/reading', methods = ['GET'])
-def reading():
-   data= pd.read_csv("https://s3.us-east-2.amazonaws.com/python-app-bucket-upload/iris1.csv")
-   l1 = list(data)  
-   return jsonify({'list':l1})
 	
 #AWS s3 bucket for file uploads to be read later by webhook
 
