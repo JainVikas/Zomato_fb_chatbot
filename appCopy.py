@@ -103,7 +103,7 @@ def upload():
         data= pd.read_csv(awsFilepath)
         l1 = list(data)  
         session['data']= awsFilepath
-        return jsonify({'successful upload':filename,'filepath': awsFilepath,'list':l1})
+        return render_template('categorypredicted.html')
     return jsonify({'score':'correct'})
       
     
