@@ -79,7 +79,7 @@ def webhook():
     predictions = selectedModel.predict(X_validation)
 # Checking prediction accuracy    
     score = accuracy_score(Y_validation, predictions)'''
-    return jsonify({'filename':filepath, 'session value':session['data'],req})
+    return jsonify({'filename':filepath, 'session value':session['data'],'request':req})
 
 @app.route('/reading', methods = ['GET'])
 def reading():
