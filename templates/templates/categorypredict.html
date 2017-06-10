@@ -1,20 +1,10 @@
-{% extends "layout.html" %}
-{% block body %}
 
-<form name = "form" action = "http://localhost:5000/categoryprediction/" method = "post" enctype = "multipart/form-data">
-         
-         <div style = "max-width:470px;">
-            <center> 
-               <input type = "file" style = "margin-left:20%;"  name = "Database" />
-            </center>
-         </div>
-			
-         <br>
+<form name = "form" action = "/webhook" method = "post" enctype = "multipart/form-data">
          
          <div style = "max-width:470px;">
             <center>
                <input type = "text" style = "margin-left:20%;" 
-                  placeholder = "Column to Predict" name = "Predict" />
+                  placeholder = "" name = "depandant" />
             </center>
          </div>
 			
@@ -33,5 +23,3 @@
          </div>
          
 </form>
-	  
-{% endblock %}
