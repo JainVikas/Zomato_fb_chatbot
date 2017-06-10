@@ -47,7 +47,7 @@ def webhook():
 #read filename/path from Json   
     filepath = session['data']#req.get("filename")
 	#read dependant variable(6/6/17: not used right now)
-    '''dependant = req.get("dependant")
+    dependant = request.form['dependant']
     #read user choice of model
     model = req.get("model")
     #newdata= np.array(req.get("newdata"))
@@ -78,8 +78,8 @@ def webhook():
 # Prediction based on validation data    
     predictions = selectedModel.predict(X_validation)
 # Checking prediction accuracy    
-    score = accuracy_score(Y_validation, predictions)'''
-    return jsonify({'filename':filepath, 'session value':session['data'],'request':req})
+    score = accuracy_score(Y_validation, predictions)
+    return jsonify({'filename':filepath, 'session value':session['data'],'request':dependant})
 
 @app.route('/reading', methods = ['GET'])
 def reading():
