@@ -109,10 +109,10 @@ def enterValues():
 def predict():
     if request.method == 'POST':
         newdata= []
-        newdata.append(request.form['sepal-length'])
-        newdata.append(request.form['sepal-width'])
-        newdata.append(request.form['petal-length'])
-        newdata.append(request.form['petal-width'])
+        newdata.append(float(request.form['sepal-length']))
+        newdata.append(float(request.form['sepal-width']))
+        newdata.append(float(request.form['petal-length']))
+        newdata.append(float(request.form['petal-width']))
         selectedModel = joblib.load(session['model'])
         predictions = selectedModel.predict(np.array(newdata))
         return jsonify({'newdata':newdata, 'prediction':predictions})
