@@ -94,7 +94,10 @@ def selectModel():
     score = accuracy_score(Y_validation, predictions)
     return jsonify({'score':score})
       
-    
+@app.route('/predict', methods =['POST','GET'])
+def predict():
+    return render_template('EnterValues.html')
+	  
 if __name__ == '__main__':
   app.debug = True
   port = int(os.environ.get('PORT', 5000))
