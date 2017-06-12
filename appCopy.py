@@ -114,8 +114,9 @@ def predict():
         newdata.append(request.form['petal-length'])
         newdata.append(request.form['petal-width'])
         selectedModel = joblib.load(session['model'])
-        predictions = selectedModel.predict(newdata)
-        return jsonify({'newdata':newdata, 'prediction':predictions})
+        array = np.array(newdata)
+        #predictions = selectedModel.predict(newdata)
+        return jsonify({'newdata':newdata, 'prediction':array})
     return render_template('EnterValues.html')
 	
 if __name__ == '__main__':
