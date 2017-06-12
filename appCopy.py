@@ -103,10 +103,10 @@ def predict():
     if request.method == 'POST':
         newdata= []
         newdata.append(request.form['sepal-length'])
-        newdata.append(request.form['sepal-length'])
-        newdata.append(request.form['sepal-length'])
-        newdata.append(request.form['sepal-length'])
-        predictions = selectedModel.predict(X_validation)
+        newdata.append(request.form['sepal-width'])
+        newdata.append(request.form['petal-length'])
+        newdata.append(request.form['petal-width'])
+        #predictions = selectedModel.predict(X_validation)
         return jsonify({'newdata':newdata})
     return render_template('EnterValues.html')
 	
