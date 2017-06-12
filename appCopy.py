@@ -96,7 +96,7 @@ def selectModel():
 # following commancd to save the model for later use
     modelfilename = "finalizedModel.sav"
 #1. save the model using joblib.dump (#selectedModel is the trained model)
-    joblib.dump(selectedmodel, modelfilename)
+    joblib.dump(selectedModel, modelfilename)
 	#saving the filename in session variable
     session['model']=modelfilename
     return jsonify({'score':score, 'model':session['model']})
