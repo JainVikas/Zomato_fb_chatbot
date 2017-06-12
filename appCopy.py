@@ -94,10 +94,22 @@ def selectModel():
     score = accuracy_score(Y_validation, predictions)
     return jsonify({'score':score})
       
+@app.route('/enterValues', methods =['POST','GET'])
+def enterValues():
+    return render_template('EnterValues.html')
+
 @app.route('/predict', methods =['POST','GET'])
 def predict():
+    if request.method == 'POST':
+        newdata= []
+        newdata.append(request.form['sepal-length'])
+        newdata.append(request.form['sepal-length'])
+        newdata.append(request.form['sepal-length'])
+        newdata.append(request.form['sepal-length'])
+        predictions = selectedModel.predict(X_validation)
+        return jsonify({'newdata':newdata})
     return render_template('EnterValues.html')
-	  
+	
 if __name__ == '__main__':
   app.debug = True
   port = int(os.environ.get('PORT', 5000))
