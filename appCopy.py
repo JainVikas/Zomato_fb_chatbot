@@ -113,8 +113,8 @@ def predict():
         newdata.append(request.form['sepal-width'])
         newdata.append(request.form['petal-length'])
         newdata.append(request.form['petal-width'])
-        #predictions = selectedModel.predict(X_validation)
-        return jsonify({'newdata':newdata})
+        predictions = selectedModel.predict(newdata)
+        return jsonify({'newdata':newdata, 'prediction':prediction})
     return render_template('EnterValues.html')
 	
 if __name__ == '__main__':
