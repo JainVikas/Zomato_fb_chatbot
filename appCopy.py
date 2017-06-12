@@ -92,7 +92,13 @@ def selectModel():
     predictions = selectedModel.predict(X_validation)
 # Checking prediction accuracy    
     score = accuracy_score(Y_validation, predictions)
-    return jsonify({'score':score})
+# following commancd to save the model for later use
+    modelfilename = "finalizedModel.sav"
+#1. save the model using joblib.dump (#selectedModel is the trained model)
+    joblib.dump(selectedmodel, modelfilename)
+	#saving the filename in session variable
+    session['model']=modelfilename
+    return jsonify({'score':score, 'model':session['model']})
       
 @app.route('/enterValues', methods =['POST','GET'])
 def enterValues():
