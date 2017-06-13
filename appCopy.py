@@ -106,11 +106,14 @@ def enterValues():
 @app.route('/predict', methods =['POST','GET'])
 def predict():
     if request.method == 'POST':
-        newdata= []
+        newdata= [] 
+        for i in request.form:
+            newdata.append(float(i))
+      ''' Old hard coded way
         newdata.append(float(request.form['sepal-length']))
         newdata.append(float(request.form['sepal-width']))
         newdata.append(float(request.form['petal-length']))
-        newdata.append(float(request.form['petal-width']))
+        newdata.append(float(request.form['petal-width']))'''
         selectedModel = joblib.load(session['model'])
         predictions = selectedModel.predict(newdata)
         return jsonify({'newdata':newdata, 'prediction':predictions.tolist(), 'requests':request.form})
