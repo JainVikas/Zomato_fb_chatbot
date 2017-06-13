@@ -108,7 +108,7 @@ def predict():
     if request.method == 'POST':
         newdata= [] 
         for i in request.form:
-            newdata.append(float(i))
+            newdata.append(float(request.form[i]))
 #Old hard coded way
 #        newdata.append(float(request.form['sepal-length']))
 #        newdata.append(float(request.form['sepal-width']))
