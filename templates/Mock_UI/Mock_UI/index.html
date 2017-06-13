@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Mock UI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/jquery-1.11.2.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script>
+  $(document).on('click', '.browse', function(){
+  var file = $(this).parent().parent().parent().find('.file');
+  file.trigger('click');
+});
+$(document).on('change', '.file', function(){
+  $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+});
+$(document).ready(function() {
+ $('.btnNext').click(function(){
+  $('.nav-tabs > .active').next('li').find('a').trigger('click');
+  $('.nav-tabs > .active').prev('li').addClass('completed');
+});
+$('.nav-tabs li').mousedown(function(){
+  $(".nav-tabs li").each(function() {
+    $(this).removeClass('completed');
+  });
+});
+});
+
+  </script>
+  <style>
+.file {
+  visibility: hidden;
+  position: absolute;
+}
+.nav-tabs{
+	border:none !important;
+	text-align:center;
+}
+.nav-tabs li a{
+	width:100px;
+	height:35px;
+	background-color:#c5dbf9 !important;
+	border:none !important;
+	border-radius:0px !important;
+	padding: 8px 10px !important;
+}
+
+.nav-tabs li a:hover{
+	color:#FFF !important;
+	background-color:#2eaee3 !important;
+	border:none !important;
+}
+
+.nav-tabs li.active a{
+	color:#FFF !important;
+	background-color:#2eaee3 !important;
+	border:none !important;
+}
+
+.nav-tabs li a:active{
+	color:#FFF !important;
+	background-color:#2eaee3 !important;
+	border:none !important;
+}
+.nav-tabs li a:focus{
+	color:#FFF !important;
+	background-color:#2eaee3 !important;
+	border:none !important;
+}
+.nav-tabs li{
+	margin-left:20px;
+}
+.nav-tabs li.completed a{
+	color:#FFF !important;
+	background-color:#2eaee3 !important;
+	border:none !important;
+}
+  </style>
+</head>
+<body>
+
+<div id="tabs" class="container" style="padding:50px 30px 50px 0px; min-height:700px;  background:#F1F1F1">
+  
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#load">Load</a></li>
+    <li><a data-toggle="tab" href="#view">View</a></li>
+    <li><a data-toggle="tab" href="#train">Train</a></li>
+    <li><a data-toggle="tab" href="#predict">Predict</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="load" class="tab-pane fade in active">
+      <div class="container" style="margin-top:150px;">
+		<div class="form-group">
+			<input type="file" name="img[]" class="file">
+			<div class="col-md-2"></div>
+			<div class="input-group col-md-8">     
+				<input type="text" class="form-control input-lg" disabled placeholder="Select the CSV data file to analyze...">
+				<span class="input-group-btn">
+					<button class="browse btn btn-primary input-lg" type="button">Upload</button>
+				</span>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="form-group" style="margin-top:200px;">
+			
+			<div class="col-md-12">
+				<button class="btn btn-primary pull-right btnNext" type="button">Next</button>
+			</div>
+			
+		</div>
+	 </div>
+    </div>
+    <div id="view" class="tab-pane fade">
+      <div class="container" style="margin-top:50px;">
+		<div class="row">
+		<div class="form-inline">
+			<div class="col-md-1"></div>
+			<div class="form-group col-md-4">
+				<label>Predictors:</label>
+				<select class="form-control" style="width:200px">
+					<option>Predictors-1</option>
+					<option>Predictors-2</option>
+					<option>Predictors-3</option>
+					<option>Predictors-4</option>
+				</select>
+			</div>
+			<div class="form-group col-md-4">
+				<label>Target:</label>
+				<select class="form-control" style="width:200px">
+					<option>Target-1</option>
+					<option>Target-2</option>
+					<option>Target-3</option>
+					<option>Target-4</option>
+				</select>
+			</div>
+			<div class="col-md-2">
+				<button class="btn btn-primary" type="button">View</button>
+			</div>
+			</div>
+		</div>
+		<div class="row" style="margin-top:100px;">
+			
+			<div class="col-md-3">
+				<img class="img-responsive" src="images/chart_1.jpg">
+			</div>
+			<div class="col-md-3">
+				<img class="img-responsive" src="images/chart_2.jpg">
+			</div>
+			
+			<div class="col-md-3">
+				<img class="img-responsive" src="images/chart_3.jpg">
+			</div>
+			<div class="col-md-3">
+				<img class="img-responsive" src="images/chart_1.jpg">
+			</div>
+		</div>
+		<div class="row" style="margin-top:50px;">
+			<div class="col-md-12">
+				<button class="btn btn-primary pull-right btnNext" type="button">Next</button>
+			</div>
+		</div>
+	  </div>
+    </div>
+    <div id="train" class="tab-pane fade">
+      <div class="container" style="margin-top:50px;">
+		<div class="row">
+		<div class="form-inline">
+			<div class="col-md-1"></div>
+			<div class="form-group col-md-4">
+				<div class="radio col-sm-6">
+					<label><input type="radio" name="optradio"> Default</label>
+				</div>
+				<div class="radio col-sm-6">
+				  <label><input type="radio" name="optradio"> Select</label>
+				</div>
+			</div>
+			<div class="form-group col-md-4">
+				<label>Model:</label>
+				<select class="form-control" style="width:200px">
+					<option>Model-1</option>
+					<option>Model-2</option>
+					<option>Model-3</option>
+					<option>Model-4</option>
+				</select>
+			</div>
+			<div class="col-md-2">
+				<button class="btn btn-primary" type="button">Train Data</button>
+			</div>
+			</div>
+		</div>
+		<div class="row" style="margin-top:100px;">
+			
+			<div class="col-md-4">
+			<label>Confidence level:</label>
+				<img class="img-responsive" src="images/chart_pie.jpg">
+			</div>
+			
+			<div class="col-md-8">
+				<button class="btn btn-primary pull-right btnNext" type="button" style="position: relative; top: 250px;">Next</button>
+			</div>
+		</div>
+		
+	  </div>
+    </div>
+    <div id="predict" class="tab-pane fade">
+	<div class="container" style="margin-top:30px;">
+	  <div class="row">
+		<div class="col-md-12">
+			<label style="font-size:16px">Scenario 1</label>
+		</div>
+	  </div>
+      <div class="row" style="margin-top:20px;">
+		<div class="form-inline">
+			
+			<div class="form-group col-md-4">
+				
+				<div class="radio col-sm-6">
+					<label><input type="radio" name="optradio"> Single</label>
+				</div>
+				<div class="radio col-sm-6">
+				  <label><input type="radio" name="optradio"> Bulk</label>
+				</div>
+			
+			</div>
+		</div>	
+	</div>
+			<div class="row" style="margin-top:30px;">
+				<div class="form-inline">
+			<div class="form-group col-md-3">
+				<label>Predictors-1:</label>
+				<select class="form-control" style="width:150px">
+					<option>Predictors-1</option>
+					<option>Predictors-2</option>
+					<option>Predictors-3</option>
+					<option>Predictors-4</option>
+				</select>
+			</div>
+			<div class="col-md-2">
+				<input class="form-control" type="text" style="width:150px"/>
+			</div>
+			<div class="form-group col-md-3">
+				<label>Predictors-2:</label>
+				<select class="form-control" style="width:150px">
+					<option>Predictors-1</option>
+					<option>Predictors-2</option>
+					<option>Predictors-3</option>
+					<option>Predictors-4</option>
+				</select>
+			</div>
+			<div class="col-md-2">
+				<input class="form-control" type="text" style="width:150px"/>
+			</div>
+			<div class="col-md-2">
+				<button class="btn btn-primary" type="button">Predict</button>
+			</div>
+			</div>
+			</div>
+		<div class="row" style="margin-top:30px;">
+			<div class="form-inline">
+				<div class="form-group col-md-6">
+				<label>Predicted Value:</label>
+				<input class="form-control" type="text" style="width:330px"/>
+			</div>
+			</div>
+			
+		</div>
+		</div>
+			<div class="container" style="margin-top:30px;">
+	  <div class="row">
+		<div class="col-md-12">
+			<label style="font-size:16px">Scenario 2</label>
+		</div>
+	  </div>
+      <div class="row" style="margin-top:20px;">
+		<div class="form-inline">
+			
+			<div class="form-group col-md-4">
+				
+				<div class="radio col-sm-6">
+					<label><input type="radio" name="optradio"> Single</label>
+				</div>
+				<div class="radio col-sm-6">
+				  <label><input type="radio" name="optradio"> Bulk</label>
+				</div>
+			
+			</div>
+		</div>	
+	</div>
+			<div class="row" style="margin-top:30px;">
+				
+			<div class="form-group col-md-8">
+			<input type="file" name="img[]" class="file">
+			
+			<div class="input-group">     
+				<input type="text" class="form-control input-lg" disabled placeholder="Select the CSV data file to analyze...">
+				<span class="input-group-btn">
+					<button class="browse btn btn-primary input-lg" type="button">Upload</button>
+				</span>
+			</div>
+			
+			</div>
+		
+			<div class="form-group col-md-4">
+				<button class="btn btn-primary" type="button" style="height:45px;">Predict</button>
+			</div>
+			
+	</div>
+		<div class="row" style="margin-top:30px;">
+			<div class="col-md-12">
+				<table class="table">
+    <thead>
+      <tr>
+        <th>Predictor 1</th>
+        <th>Predictor 2</th>
+        <th>Target Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Value 1</td>
+        <td>Value 3</td>
+        <td>Value 5</td>
+      </tr>
+      <tr>
+        <td>Value 2</td>
+        <td>Value 4</td>
+        <td>Value 6</td>
+      </tr>
+      <tr>
+        <td>Target Value 1</td>
+        <td>Target Value 2</td>
+        <td>Target Value 3</td>
+      </tr>
+    </tbody>
+  </table>
+			</div>
+		</div>
+		<div class="row">
+			
+				<button type="button" class="btn btn-link pull-right">Download</button>
+			
+		</div>
+		</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

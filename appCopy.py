@@ -18,20 +18,15 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 #rendering page
 from werkzeug.utils import secure_filename
-###########################################################################################################################################################################################################################################################################################################
-#
-#    TESTING SESSION VAR
-#
-##############################################################################################################################################################################################################################################################################################################################################
+
+
 app = Flask(__name__)
 app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'
 
 	
 @app.route('/account/')
 def account():
-    # Initialise the counter, or increment it
-    
-    return render_template('account.html')
+     return render_template('account.html')
 
 	
 #AWS s3 bucket for file uploads to be read later by webhook
@@ -52,18 +47,21 @@ def upload():
     return render_template('account.html')
 
 
+#webhook to extract dependant Variable from user entry
 @app.route('/selectVariable', methods=['POST', 'GET'])
 def selectVariable():
     req = request.get_json(silent=True, force=True)
 #read filename/path from Json   
     filepath = session['data']#req.get("filename")
-	#read dependant variable(6/6/17: not used right now)
+	#read dependant variable
     session['dependant'] = request.form['dependant']
-    #read user choice of model
+    #redirect user to webpage to select model
     return render_template('modelSelection.html')
-    
+
+#webhook to apply selected model and provide score as session
 @app.route('/selectModel', methods =['POST','GET'])
 def selectModel():
+#extract the user entered model from request.form
     model = request.form['model']
     filepath = session['data']
     data = pd.read_csv(filepath) 
@@ -115,7 +113,8 @@ def predict():
         newdata.append(float(request.form['petal-width']))
         selectedModel = joblib.load(session['model'])
         predictions = selectedModel.predict(newdata)
-        return jsonify({'newdata':newdata, 'prediction':predictions.tolist()})
+        return jsonify({'newdata':newdata, 'prediction':predictions.tolist(), 'requests':request.form})
+	#redirect user to webpage to select values for new test data.
     return render_template('EnterValues.html')
 	
 if __name__ == '__main__':
