@@ -26,6 +26,28 @@ $('.nav-tabs li').mousedown(function(){
   });
 });
 });
+		<!--- added Function for for file upload --->
+
+ /*
+       Function called when file input updated. If there is a file selected, then
+       start upload procedure by asking for a signed request from the app.
+    */
+    function initUpload(){
+      const files = document.getElementById('file-input').files;
+      const file = files[0];
+      if(!file){
+        return alert('No file selected.');
+      }
+      getSignedRequest(file);
+    }
+
+    /*
+       Bind listeners when the page loads.
+    */
+    (() => {
+      document.getElementById('uploadButton').onclick = initUpload;
+    })();
+
 
   </script>
   <style>
@@ -93,12 +115,14 @@ $('.nav-tabs li').mousedown(function(){
     <div id="load" class="tab-pane fade in active">
       <div class="container" style="margin-top:150px;">
 		<div class="form-group">
-			<input type="file" name="img[]" class="file">
+		<!--- added Id for file and changed name to "file" upload --->
+			<input type="file" id="file-input" name="file" class="file">
 			<div class="col-md-2"></div>
 			<div class="input-group col-md-8">     
 				<input type="text" class="form-control input-lg" disabled placeholder="Select the CSV data file to analyze...">
 				<span class="input-group-btn">
-					<button class="browse btn btn-primary input-lg" type="button">Upload</button>
+				<!--- added Id for upload  button--->
+					<button id = "uploadButton" class="browse btn btn-primary input-lg" type="button">Upload</button>
 				</span>
 			</div>
 			<div class="col-md-2"></div>

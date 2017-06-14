@@ -42,7 +42,7 @@ def upload():
         awsFilepath= "https://s3.us-east-2.amazonaws.com/"+os.environ.get('S3_BUCKET')+"/" +filename
         data= pd.read_csv(awsFilepath)
         session['data']= awsFilepath
-        session['columnNames']=list(data)     
+        session['columnNames']=list(data)  
         return render_template('dependant.html')
     return render_template('account.html')
 
