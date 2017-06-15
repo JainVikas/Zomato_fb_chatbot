@@ -60,8 +60,11 @@ def view():
     target = request.form['target']
     session['predictor']= predictor
     session['target']=target
+    data = pd.read_csv(session['data']) 
+    predictorValues = data.values[:,list(data).index(predictor)]
+    targetValues = data.values[:,list(data).index(target)]
     
-    return jsonify({'predict':session['predictor'],'target':session['target']})
+    return jsonify({'predict':predictorValues,'target':targetValues})
 
 #webhook to apply selected model and provide score as session
 @app.route('/selectModel', methods =['POST','GET'])
