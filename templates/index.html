@@ -125,7 +125,8 @@ var modelSelected = modelList.options[modelList.selectedIndex].text;
             type: 'POST',
 			url:'/selectModel',
 			datatype:'json', 
-            data:{model:modelSelected}
+            data:{model:modelSelected},
+			
 });
 });
 $('.nav-tabs li').mousedown(function(){
