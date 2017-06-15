@@ -59,14 +59,19 @@ $(document).ready(function() {
   $('.nav-tabs > .active').prev('li').addClass('completed');
   jsonData= response;
 	alert(jsonData);
+	var predictorList = document.getElementById("predictors");
 	for(var i=0; i<jsonData.predictors.length; i++){
-	console.log(jsonData.predictors[i])
-	console.log(document.getElementById("predictors").length)
-	var createOption = document.createElement("option");
-	createOption.innerHTML  = jsonData.predictors[i];
-    var parentDiv = document.getElementById("predictors").parentNode;
-	parentDiv.appendChild(createOption);
+	var option = document.createElement("option");
+	option.text = jsonData.predictors[i];
+    predictorList.add(option);
  	}
+	var targetList = document.getElementById("targets");
+	for(var i=0; i<jsonData.predictors.length; i++){
+	var option = document.createElement("option");
+	option.text = jsonData.predictors[i];
+    targetList.add(option);
+ 	}
+});
 });
 $('.nav-tabs li').mousedown(function(){
   $(".nav-tabs li").each(function() {
@@ -189,19 +194,13 @@ $('.nav-tabs li').mousedown(function(){
 			<div class="form-group col-md-4">
 				<label>Predictors:</label>
 				<select id="predictors" class="form-control" style="width:200px">
-					<option>Predictors-1</option>
-					<option>Predictors-2</option>
-					<option>Predictors-3</option>
-					<option>Predictors-4</option>
+					
 				</select>
 			</div>
 			<div class="form-group col-md-4">
 				<label>Target:</label>
-				<select class="form-control" style="width:200px">
-					<option>Target-1</option>
-					<option>Target-2</option>
-					<option>Target-3</option>
-					<option>Target-4</option>
+				<select id="targets"class="form-control" style="width:200px">
+					
 				</select>
 			</div>
 			<div class="col-md-2">
