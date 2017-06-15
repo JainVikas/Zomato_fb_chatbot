@@ -56,18 +56,12 @@ def readModels():
 #webhook to extract dependant Variable from user entry
 @app.route('/view', methods=['POST', 'GET'])
 def view():
-    req = request.get_json(silent=True, force=True)
-#read filename/path from Json   
-    #predictor = req.get("predictor")
-    #target = req.get("target")
-    #session['predictor']= predictor
-    #session['target']=target
+    predictor = req.form['predictor']
+    target = req.form['target']
+    session['predictor']= predictor
+    session['target']=target
     
-    #redirect user to webpage to select model
-    #r = make_response(req)
-    #r.headers['Content-Type'] = 'application/json'
-    return render_template('index.html')
-	#'predict':session['predictor']})
+    return jsonify({'predict':session['predictor'],'target':session['target']})
 
 #webhook to apply selected model and provide score as session
 @app.route('/selectModel', methods =['POST','GET'])
