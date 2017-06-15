@@ -15,6 +15,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.externals import joblib
 from sklearn.naive_bayes import GaussianNB
+
 from sklearn.svm import SVC
 #rendering page
 from werkzeug.utils import secure_filename
