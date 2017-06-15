@@ -92,7 +92,6 @@ $(document).ready(function() {
  	}
 	<!--- adding model list --->
 	getModel();
-	alert(models);
 	console.log(models.length)
 	var modelList = document.getElementById("models");
 	for(var i=0; i<models.length; i++){
@@ -126,7 +125,7 @@ var modelSelected = modelList.options[modelList.selectedIndex].text;
             type: 'POST',
 			url:'/predict',
 			datatype:'json', 
-            data:{model:predictorColumn}
+            data:{model:modelSelected}
 });
 });
 $('.nav-tabs li').mousedown(function(){
