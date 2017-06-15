@@ -49,7 +49,7 @@ def upload():
 
 @app.route('/readModels', methods=[ 'GET'])
 def readModels():
-    filename = os.path.join(app.static_folder, 'data/model.json')
+    filename = os.path.join(app.static_folder, 'model.json')
     with open(filename) as model_file:
         data = json.load(model_file)
     return data

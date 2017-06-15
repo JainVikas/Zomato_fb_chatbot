@@ -47,7 +47,7 @@ def flowerpetal():
     dataset = pandas.read_csv(url, names=names)
     
     array = dataset.values
-    X = array[:,0:4]
+    X = array[:,0:]
     Y = array[:,4]
     validation_size = 0.20
     seed = 7
