@@ -58,13 +58,13 @@ def readModels():
 def view():
     req = request.get_json(silent=True, force=True)
 #read filename/path from Json   
-    predictor = req.get("predictor")
-    target = req.get("target")
-    session['predictor']= predictor
-    session['target']=target
+    #predictor = req.get("predictor")
+    #target = req.get("target")
+    #session['predictor']= predictor
+    #session['target']=target
     
     #redirect user to webpage to select model
-    return jsonify({'predict':session['predictor']})
+    return jsonify({req})#'predict':session['predictor']})
 
 #webhook to apply selected model and provide score as session
 @app.route('/selectModel', methods =['POST','GET'])
