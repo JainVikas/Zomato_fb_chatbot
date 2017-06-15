@@ -54,16 +54,13 @@ $(document).on('change', '.file', function(){
   $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
 });
 
-var models = $.getJSON( "model.json", function() {
-  console.log( "success" );
-});
+
 
 $(document).ready(function() {
  $('.btnNext').click(function(){
   $('.nav-tabs > .active').next('li').find('a').trigger('click');
   $('.nav-tabs > .active').prev('li').addClass('completed');
   jsonData= response;
-	alert(jsonData);
 	<!---- adding prediction elements--->
 	var predictorList = document.getElementById("predictors");
 	for(var i=0; i<jsonData.predictors.length; i++){
@@ -79,8 +76,11 @@ $(document).ready(function() {
     targetList.add(option);
  	}
 	<!--- adding model list --->
-	var modelList = document.getElementById("targets");
-	for(var i=0; i<jsonData.predictors.length; i++){
+	var models = $.getJSON( "model.json")
+	alert(models);
+	console.log(models.length)
+	var modelList = document.getElementById("models");
+	for(var i=0; i<models.length; i++){
 	var option = document.createElement("option");
 	option.text = jsonData.predictors[i];
     modelList.add(option);
@@ -260,7 +260,7 @@ $('.nav-tabs li').mousedown(function(){
 			</div>
 			<div class="form-group col-md-4">
 				<label>Model:</label>
-				<select class="form-control" style="width:200px">
+				<select id= "models" class="form-control" style="width:200px">
 					<option>Model-1</option>
 					<option>Model-2</option>
 					<option>Model-3</option>
