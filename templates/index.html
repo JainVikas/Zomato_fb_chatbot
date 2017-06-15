@@ -53,6 +53,11 @@ const xhr = new XMLHttpRequest();
 $(document).on('change', '.file', function(){
   $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
 });
+
+var models = $.getJSON( "model.json", function() {
+  console.log( "success" );
+});
+
 $(document).ready(function() {
  $('.btnNext').click(function(){
   $('.nav-tabs > .active').next('li').find('a').trigger('click');
@@ -73,7 +78,17 @@ $(document).ready(function() {
 	option.text = jsonData.predictors[i];
     targetList.add(option);
  	}
+	<!--- adding model list --->
+	var modelList = document.getElementById("targets");
+	for(var i=0; i<jsonData.predictors.length; i++){
+	var option = document.createElement("option");
+	option.text = jsonData.predictors[i];
+    modelList.add(option);
+ 	}
 });
+
+
+
 /*function for view chart */
 /*
 $('#viewChart').click(function(){
