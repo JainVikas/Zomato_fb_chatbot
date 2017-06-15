@@ -105,7 +105,7 @@ $(document).ready(function() {
 
 
 /*function for view chart */
-/*
+
 $('#viewChart').click(function(){
 var pred = document.getElementById("predictors");
 var predictorColumn = pred.options[pred.selectedIndex].text;
@@ -114,10 +114,10 @@ var targetColumn = targ.options[targ.selectedIndex].text;
     $.ajax({
             type: 'POST',
 			url:'/view'
-            data:  {'predictor':predictorColumn, 'target':targetColumn}
+            data:{'predictor':predictorColumn, 'target':targetColumn}
 });
 });
-*/
+
 $('.nav-tabs li').mousedown(function(){
   $(".nav-tabs li").each(function() {
     $(this).removeClass('completed');

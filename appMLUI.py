@@ -64,7 +64,7 @@ def view():
     session['target']=target
     
     #redirect user to webpage to select model
-    return render_template('modelSelection.html')
+    return jsonify({'predict':session['predictor'])
 
 #webhook to apply selected model and provide score as session
 @app.route('/selectModel', methods =['POST','GET'])
