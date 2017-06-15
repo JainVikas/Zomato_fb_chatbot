@@ -73,7 +73,7 @@ const xhr = new XMLHttpRequest();
 	jsonData= response;
 	for(var i=0; i<jsonData.predictors.length; i++){
 		$('#predictors')
-          .append($('<option>', { value : i })
+          .append($('<option>')
           .text(jsonData.predictors[i]));
 		  }
  	});
