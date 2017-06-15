@@ -118,6 +118,16 @@ var targetColumn = targ.options[targ.selectedIndex].text;
             data:{predictor:predictorColumn, target:targetColumn}
 });
 });
+$('#trainModel').click(function(){
+var modelList = document.getElementById("models");
+var modelSelected = modelList.options[modelList.selectedIndex].text;
+
+    $.ajax({
+            type: 'POST',
+			url:'/predict',
+			datatype:'json', 
+            data:{model:predictorColumn}
+});
 
 $('.nav-tabs li').mousedown(function(){
   $(".nav-tabs li").each(function() {
@@ -277,14 +287,14 @@ $('.nav-tabs li').mousedown(function(){
 			<div class="form-group col-md-4">
 				<label>Model:</label>
 				<select id= "models" class="form-control" style="width:200px">
-					<option>Model-1</option>
+					<option>LR</option>
 					<option>Model-2</option>
 					<option>Model-3</option>
 					<option>Model-4</option>
 				</select>
 			</div>
 			<div class="col-md-2">
-				<button class="btn btn-primary" type="button">Train Data</button>
+				<button id = "trainModel" class="btn btn-primary" type="button">Train Data</button>
 			</div>
 			</div>
 		</div>

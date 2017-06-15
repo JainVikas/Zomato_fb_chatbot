@@ -74,11 +74,11 @@ def selectModel():
     filepath = session['data']
     data = pd.read_csv(filepath) 
     L1 = list(data)
-    dependantIndex= L1.index(session['dependant'])
+    targetIndex= L1.index(session['target'])
     array = data.values
 #dividing X and y, considering Class is the last column
     X = array[:,0:-1]
-    Y = array[:,dependantIndex]
+    Y = array[:,targetIndex]
     validation_size = 0.20
     seed = 7
 # Spliting  data into 80/20 train_test_split
