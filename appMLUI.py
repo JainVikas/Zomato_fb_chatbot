@@ -94,18 +94,18 @@ def selectModel():
       }
     selectedModel = Models[model]	
 # Training User selected model	
-    selectedModel.fit(X_train, Y_train)
+    #selectedModel.fit(X_train, Y_train)
 # Prediction based on validation data    
-    predictions = selectedModel.predict(X_validation)
+    #predictions = selectedModel.predict(X_validation)
 # Checking prediction accuracy    
-    score = accuracy_score(Y_validation, predictions)
+    #score = accuracy_score(Y_validation, predictions)
 # following commancd to save the model for later use
-    modelfilename = "finalizedModel.sav"
+    #modelfilename = "finalizedModel.sav"
 #1. save the model using joblib.dump (#selectedModel is the trained model)
-    joblib.dump(selectedModel, modelfilename)
+    #joblib.dump(selectedModel, modelfilename)
 	#saving the filename in session variable
-    session['model']=modelfilename
-    return jsonify({'score':score, 'model':session['model']})
+    #session['model']=modelfilename
+    return jsonify({'score':X_train, 'model':Y_train})
       
 @app.route('/enterValues', methods =['POST','GET'])
 def enterValues():
