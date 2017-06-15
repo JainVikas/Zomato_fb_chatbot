@@ -13,9 +13,22 @@
   var file = $(this).parent().parent().parent().find('.file');
   file.trigger('click');
 });
-$(document).on('change', '.file', function(){
-  $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
-});
+    function initUpload(){
+      const files = document.getElementById('file-input').files;
+      const file = files[0];
+      if(!file){
+        return alert('No file selected.');
+      }
+      uploadFile(file);
+    }
+
+    /*
+       Bind listeners when the page loads.
+    */
+    (() => {
+      document.getElementById('file-input').onchange = initUpload;
+    })();
+
 $(document).ready(function() {
  $('.btnNext').click(function(){
   $('.nav-tabs > .active').next('li').find('a').trigger('click');
@@ -33,7 +46,7 @@ $('.nav-tabs li').mousedown(function(){
        Function called when file input updated. If there is a file selected, then
        start upload procedure by asking for a signed request from the app.
     */
- 
+/*
 $(function() {
     $('#file-input').change(function() {
         var form_data = new FormData($('#file-input')[0]);
@@ -51,7 +64,27 @@ $(function() {
         });
     });
 });
+*/
+    function uploadFile(file){
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', "/upload");
+      xhr.setRequestHeader('x-amz-acl', 'public-read');
 
+      const postData = new FormData();
+      postData.append('file', file);
+
+      xhr.onreadystatechange = () => {
+        if(xhr.readyState === 4){
+          if(xhr.status === 200 || xhr.status === 204){
+            alert('uploaded successfully');
+          }
+          else{
+            alert('Could not upload file.');
+          }
+        }
+      };
+      xhr.send(postData);
+    }
   </script>
   <style>
 .file {
