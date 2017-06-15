@@ -71,6 +71,7 @@ const xhr = new XMLHttpRequest();
     }
  $('#GoToViewTab').click(function(){
 	jsonData= response;
+	alert("click");
 	for(var i=0; i<jsonData.predictors.length; i++){
 	console.log(jsonData.predictors[i])
 	console.log(document.getElementById("predictors").length)
