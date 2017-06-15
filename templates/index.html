@@ -72,7 +72,7 @@ const xhr = new XMLHttpRequest();
  $('#GoToViewTab').click(function(){
 	jsonData= response;
 	for(var i=0; i<jsonData.predictors.length; i++){
-	var createOption = document.createElement("option);
+	var createOption = document.createElement("option");
 	createOption.innerHTML  = jsonData.predictors[i];
     var parentDiv = document.getElementById("predictors").parentNode;
 	parentDiv.appendChild(createOption);
