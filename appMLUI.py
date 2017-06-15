@@ -47,15 +47,22 @@ def upload():
         return jsonify( {'predictors':session['columnNames']})
     return render_template('index.html')
 
-
+@app.route('/readModels', methods=[ 'GET'])
+def readModels():
+    filename = os.path.join(app.static_folder, 'data/model.json')
+    with open(filename) as model_file:
+        data = json.load(model_file)
+    return data
 #webhook to extract dependant Variable from user entry
-@app.route('/selectVariable', methods=['POST', 'GET'])
-def selectVariable():
+@app.route('/view', methods=['POST', 'GET'])
+def view():
     req = request.get_json(silent=True, force=True)
 #read filename/path from Json   
-    filepath = session['data']#req.get("filename")
-	#read dependant variable
-    session['dependant'] = request.form['dependant']
+    predictor = req.get("predictor")
+    target = req.get("target")
+    session['predictor']= predictor
+    session['target']=target
+    
     #redirect user to webpage to select model
     return render_template('modelSelection.html')
 
