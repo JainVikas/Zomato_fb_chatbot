@@ -72,11 +72,12 @@ const xhr = new XMLHttpRequest();
  $('#GoToViewTab').click(function(){
 	jsonData= response;
 	for(var i=0; i<jsonData.predictors.length; i++){
-		$('#predictors')
-          .append($('<option>')
-          .text(jsonData.predictors[i]));
-		  }
- 	});
+	var createOption = document.createElement("option);
+	createOption.innerHTML  = jsonData.predictors[i];
+    var parentDiv = document.getElementById("predictors").parentNode;
+	parentDiv.appendChild(createOption);
+ 	}
+	});
   </script>
   <style>
 .file {
@@ -158,7 +159,7 @@ const xhr = new XMLHttpRequest();
 		<div class="form-group" style="margin-top:200px;">
 			
 			<div class="col-md-12">
-				<button id = "GoToViewTab"class="btn btn-primary pull-right btnNext" type="button">Next</button>
+				<button id = "GoToViewTab" class="btn btn-primary pull-right btnNext" type="button">Next</button>
 			</div>
 			
 		</div>
