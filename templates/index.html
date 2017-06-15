@@ -114,7 +114,7 @@ var targetColumn = targ.options[targ.selectedIndex].text;
     $.ajax({
             type: 'POST',
 			url:'/view',
-			datatype:'json, 
+			datatype:'json', 
             data:{predictor:predictorColumn, target:targetColumn}
 });
 });
