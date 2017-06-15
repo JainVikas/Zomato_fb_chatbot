@@ -43,7 +43,7 @@ def upload():
         data= pd.read_csv(awsFilepath)
         session['data']= awsFilepath
         session['columnNames']=list(data)  
-        return jsonify( 'predictors':session['columnNames'])
+        return jsonify( {'predictors':session['columnNames']})
     return render_template('index.html')
 
 
