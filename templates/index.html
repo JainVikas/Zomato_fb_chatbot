@@ -7,9 +7,9 @@
 <!---  <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <!--- for Server--->
+  <!--- below code to add js,css, in flask for Server--->
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.min.css') }}">
-  <script src="{{ url_for('static',filename='js/jquery-1.11.2.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/jquery-3.2.1.min.js') }}"></script>
   <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
   
   <script>
@@ -40,11 +40,17 @@ $('.nav-tabs li').mousedown(function(){
  
 $(function() {
     $('#file-input').change(function() {
-        var form_data = new FormData($('#file-input')[0]);
+	  const files = document.getElementById('file-input').files;
+      const file = files[0];
+	  var data = new FormData();
+		$.each(files, function(key, value)
+		{
+        data.append(key, value);
+		});
         $.ajax({
             type: 'POST',
             url: '/upload',
-            data: form_data,
+            data: data,
             contentType: false,
             cache: false,
             processData: false,
