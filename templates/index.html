@@ -57,7 +57,7 @@ $(document).on('change', '.file', function(){
 var models;
 function getModel(){
       const xhr = new XMLHttpRequest();
-      xhr.open('GET', `/viewModels`);
+      xhr.open('GET', `/readModels`);
       xhr.onreadystatechange = () => {
         if(xhr.readyState === 4){
           if(xhr.status === 200){
