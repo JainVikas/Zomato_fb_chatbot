@@ -71,7 +71,7 @@ const xhr = new XMLHttpRequest();
     }
  $('#GoToViewTab').click(function(){
 	jsonData= response;
-	for(var i=0; i<jsonData.length; i++){
+	for(var i=0; i<jsonData.predictors.length; i++){
 		$('#mySelect')
           .append($('<option>', { value : i })
           .text(jsonData.predictors[i]));
