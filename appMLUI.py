@@ -56,8 +56,8 @@ def readModels():
 #webhook to extract dependant Variable from user entry
 @app.route('/view', methods=['POST', 'GET'])
 def view():
-    predictor = req.form['predictor']
-    target = req.form['target']
+    predictor = request.form['predictor']
+    target = request.form['target']
     session['predictor']= predictor
     session['target']=target
     
