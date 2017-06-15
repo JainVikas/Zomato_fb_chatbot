@@ -40,7 +40,7 @@ const xhr = new XMLHttpRequest();
       xhr.onreadystatechange = () => {
         if(xhr.readyState === 4){
           if(xhr.status === 200 || xhr.status === 204){
-            const response = JSON.parse(xhr.responseText);
+            response = JSON.parse(xhr.responseText);
 			alert('File Uploaded Successful');
           }
           else{
@@ -58,7 +58,7 @@ $(document).ready(function() {
   $('.nav-tabs > .active').next('li').find('a').trigger('click');
   $('.nav-tabs > .active').prev('li').addClass('completed');
   jsonData= response;
-	alert("click");
+	alert(jsonData);
 	for(var i=0; i<jsonData.predictors.length; i++){
 	console.log(jsonData.predictors[i])
 	console.log(document.getElementById("predictors").length)
