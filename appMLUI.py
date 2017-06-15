@@ -1,4 +1,4 @@
-from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, redirect, url_for
+from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, redirect, url_for, make_response
 import os, json, boto3
 from boto3.s3.transfer import S3Transfer
 from botocore.client import Config
@@ -64,7 +64,10 @@ def view():
     #session['target']=target
     
     #redirect user to webpage to select model
-    return req#'predict':session['predictor']})
+    r = make_response(req)
+    r.headers['Content-Type'] = 'application/json'
+    return r
+	#'predict':session['predictor']})
 
 #webhook to apply selected model and provide score as session
 @app.route('/selectModel', methods =['POST','GET'])
