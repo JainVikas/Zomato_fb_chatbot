@@ -64,8 +64,8 @@ def view():
     #session['target']=target
     
     #redirect user to webpage to select model
-    r = make_response(req)
-    r.headers['Content-Type'] = 'application/json'
+    #r = make_response(req)
+    #r.headers['Content-Type'] = 'application/json'
     return ({'sucess':"sucess"})
 	#'predict':session['predictor']})
 
