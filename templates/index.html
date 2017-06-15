@@ -48,6 +48,7 @@ $(function() {
       uploadFile(file);
 	  });
 	  });
+var response;
 	  
 function uploadFile(file){
 const xhr = new XMLHttpRequest();
@@ -58,7 +59,7 @@ const xhr = new XMLHttpRequest();
       xhr.onreadystatechange = () => {
         if(xhr.readyState === 4){
           if(xhr.status === 200 || xhr.status === 204){
-            
+            const response = JSON.parse(xhr.responseText);
 			alert('File Uploaded Successful');
           }
           else{
@@ -68,7 +69,14 @@ const xhr = new XMLHttpRequest();
       };
       xhr.send(postData);
     }
-
+ $('#GoToViewTab').click(function(){
+	jsonData= response;
+	for(var i=0; i<jsonData.length; i++){
+		$('#mySelect')
+          .append($('<option>', { value : i })
+          .text(jsonData.predictors[i]));
+		  }
+ 	});
   </script>
   <style>
 .file {
@@ -150,7 +158,7 @@ const xhr = new XMLHttpRequest();
 		<div class="form-group" style="margin-top:200px;">
 			
 			<div class="col-md-12">
-				<button class="btn btn-primary pull-right btnNext" type="button">Next</button>
+				<button id = "GoToViewTab"class="btn btn-primary pull-right btnNext" type="button">Next</button>
 			</div>
 			
 		</div>
@@ -163,7 +171,7 @@ const xhr = new XMLHttpRequest();
 			<div class="col-md-1"></div>
 			<div class="form-group col-md-4">
 				<label>Predictors:</label>
-				<select class="form-control" style="width:200px">
+				<select id="predictors" class="form-control" style="width:200px">
 					<option>Predictors-1</option>
 					<option>Predictors-2</option>
 					<option>Predictors-3</option>
