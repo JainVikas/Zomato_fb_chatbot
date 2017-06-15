@@ -53,6 +53,7 @@ const xhr = new XMLHttpRequest();
 $(document).on('change', '.file', function(){
   $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
 });
+<!--- model function --->
 var models;
 function getModel(){
       const xhr = new XMLHttpRequest();
@@ -90,6 +91,7 @@ $(document).ready(function() {
     targetList.add(option);
  	}
 	<!--- adding model list --->
+	getModel();
 	alert(models);
 	console.log(models.length)
 	var modelList = document.getElementById("models");
