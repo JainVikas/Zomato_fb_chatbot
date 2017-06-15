@@ -13,31 +13,12 @@
   <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
   
   <script>
+  var response;
+  
   $(document).on('click', '.browse', function(){
   var file = $(this).parent().parent().parent().find('.file');
   file.trigger('click');
 });
-$(document).on('change', '.file', function(){
-  $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
-});
-$(document).ready(function() {
- $('.btnNext').click(function(){
-  $('.nav-tabs > .active').next('li').find('a').trigger('click');
-  $('.nav-tabs > .active').prev('li').addClass('completed');
-});
-$('.nav-tabs li').mousedown(function(){
-  $(".nav-tabs li").each(function() {
-    $(this).removeClass('completed');
-  });
-});
-});
-		<!--- added Function for for file upload --->
-
- /*
-       Function called when file input updated. If there is a file selected, then
-       start upload procedure by asking for a signed request from the app.
-    */
- 
 $(function() {
     $('#file-input').change(function() {
 	  const files = document.getElementById('file-input').files;
@@ -48,7 +29,7 @@ $(function() {
       uploadFile(file);
 	  });
 	  });
-var response;
+
 	  
 function uploadFile(file){
 const xhr = new XMLHttpRequest();
@@ -69,6 +50,38 @@ const xhr = new XMLHttpRequest();
       };
       xhr.send(postData);
     }
+$(document).on('change', '.file', function(){
+  $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+});
+$(document).ready(function() {
+ $('.btnNext').click(function(){
+  $('.nav-tabs > .active').next('li').find('a').trigger('click');
+  $('.nav-tabs > .active').prev('li').addClass('completed');
+  jsonData= response;
+	alert("click");
+	for(var i=0; i<jsonData.predictors.length; i++){
+	console.log(jsonData.predictors[i])
+	console.log(document.getElementById("predictors").length)
+	var createOption = document.createElement("option");
+	createOption.innerHTML  = jsonData.predictors[i];
+    var parentDiv = document.getElementById("predictors").parentNode;
+	parentDiv.appendChild(createOption);
+ 	}
+});
+$('.nav-tabs li').mousedown(function(){
+  $(".nav-tabs li").each(function() {
+    $(this).removeClass('completed');
+  });
+});
+});
+		<!--- added Function for for file upload --->
+
+ /*
+       Function called when file input updated. If there is a file selected, then
+       start upload procedure by asking for a signed request from the app.
+    */
+ 
+/*
  $('#GoToViewTab').click(function(){
 	jsonData= response;
 	alert("click");
@@ -80,7 +93,7 @@ const xhr = new XMLHttpRequest();
     var parentDiv = document.getElementById("predictors").parentNode;
 	parentDiv.appendChild(createOption);
  	}
-	});
+	});*/
   </script>
   <style>
 .file {
