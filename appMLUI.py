@@ -94,7 +94,7 @@ def selectModel():
       }
     selectedModel = Models[model]	
 # Training User selected model	
-    #selectedModel.fit(X_train, Y_train)
+    selectedModel.fit(X_train, Y_train)
 # Prediction based on validation data    
     #predictions = selectedModel.predict(X_validation)
 # Checking prediction accuracy    
@@ -105,7 +105,7 @@ def selectModel():
     #joblib.dump(selectedModel, modelfilename)
 	#saving the filename in session variable
     #session['model']=modelfilename
-    return jsonify({'score':X_train.tolist(), 'model':Y_train.tolist(), 'selectModel':selectedModel})
+    return jsonify({'score':X_train.tolist(), 'model':Y_train.tolist()})
       
 @app.route('/enterValues', methods =['POST','GET'])
 def enterValues():
