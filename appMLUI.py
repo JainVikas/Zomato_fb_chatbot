@@ -66,7 +66,7 @@ def view():
     #redirect user to webpage to select model
     r = make_response(req)
     r.headers['Content-Type'] = 'application/json'
-    return r
+    return ({'sucess':"sucess"})
 	#'predict':session['predictor']})
 
 #webhook to apply selected model and provide score as session
