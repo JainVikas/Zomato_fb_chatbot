@@ -105,7 +105,7 @@ def selectModel():
     #joblib.dump(selectedModel, modelfilename)
 	#saving the filename in session variable
     #session['model']=modelfilename
-    return jsonify({'score':X_train, 'model':Y_train})
+    return jsonify({'score':X_train.tolist(), 'model':Y_train.tolist(), 'selectModel':selectedModel})
       
 @app.route('/enterValues', methods =['POST','GET'])
 def enterValues():
