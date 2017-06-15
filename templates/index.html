@@ -59,12 +59,14 @@ $(document).ready(function() {
   $('.nav-tabs > .active').prev('li').addClass('completed');
   jsonData= response;
 	alert(jsonData);
+	<!---- adding prediction elements--->
 	var predictorList = document.getElementById("predictors");
 	for(var i=0; i<jsonData.predictors.length; i++){
 	var option = document.createElement("option");
 	option.text = jsonData.predictors[i];
     predictorList.add(option);
  	}
+	<!---- adding targets elements--->
 	var targetList = document.getElementById("targets");
 	for(var i=0; i<jsonData.predictors.length; i++){
 	var option = document.createElement("option");
@@ -72,7 +74,8 @@ $(document).ready(function() {
     targetList.add(option);
  	}
 });
-});
+
+
 $('.nav-tabs li').mousedown(function(){
   $(".nav-tabs li").each(function() {
     $(this).removeClass('completed');
