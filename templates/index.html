@@ -42,6 +42,32 @@ $(function() {
     $('#file-input').change(function() {
 	  const files = document.getElementById('file-input').files;
       const file = files[0];
+      if(!file){
+        return alert('No file selected.');
+      }
+      uploadFile(file);
+	  });
+	  });
+	  
+function uploadFile(file){
+const xhr = new XMLHttpRequest();
+      xhr.open('POST', '/upload');
+      xhr.setRequestHeader('x-amz-acl', 'public-read');
+      const postData = new FormData();
+      postData.append('file', file);
+      xhr.onreadystatechange = () => {
+        if(xhr.readyState === 4){
+          if(xhr.status === 200 || xhr.status === 204){
+            alert('Successful');
+          }
+          else{
+            alert('Could not upload file.');
+          }
+        }
+      };
+      xhr.send(postData);
+    }
+	/*
 	  var data = new FormData();
 		$.each(files, function(key, value)
 		{
@@ -61,6 +87,7 @@ $(function() {
         });
     });
 });
+*/
 
   </script>
   <style>
