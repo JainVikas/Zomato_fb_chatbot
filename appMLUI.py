@@ -64,7 +64,7 @@ def view():
     predictorValues = data.values[:,list(data).index(predictor)]
     targetValues = data.values[:,list(data).index(target)]
     
-    return jsonify({'predict':predictorValues,'target':targetValues})
+    return jsonify({'predict':predictorValues.tolist(),'target':targetValues.tolist()})
 
 #webhook to apply selected model and provide score as session
 @app.route('/selectModel', methods =['POST','GET'])
