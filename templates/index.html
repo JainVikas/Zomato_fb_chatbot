@@ -74,21 +74,29 @@ $(document).ready(function() {
     targetList.add(option);
  	}
 });
-
-
+/*function for view chart */
+/*
+$('#viewChart').click(function(){
+var pred = document.getElementById("predictors");
+var predictorColumn = pred.options[pred.selectedIndex].text;
+var targ = document.getElementById("targets");
+var targetColumn = targ.options[targ.selectedIndex].text;
+    $.ajax({
+            type: 'POST',
+			url:'/
+            data:  {keyname:$('#AttorneyEmpresa option:selected').val()}
+});
+});
+*/
 $('.nav-tabs li').mousedown(function(){
   $(".nav-tabs li").each(function() {
     $(this).removeClass('completed');
   });
 });
 });
-		<!--- added Function for for file upload --->
 
- /*
-       Function called when file input updated. If there is a file selected, then
-	*/  
-       start upload procedure by asking for a signed request from the app.
-    *
+
+
   </script>
   <style>
 .file {
@@ -194,7 +202,8 @@ $('.nav-tabs li').mousedown(function(){
 				</select>
 			</div>
 			<div class="col-md-2">
-				<button class="btn btn-primary" type="button">View</button>
+			<!--- added is as viewChart --->
+				<button id = "viewChart" class="btn btn-primary" type="button">View</button>
 			</div>
 			</div>
 		</div>
