@@ -58,7 +58,7 @@ const xhr = new XMLHttpRequest();
       xhr.onreadystatechange = () => {
         if(xhr.readyState === 4){
           if(xhr.status === 200 || xhr.status === 204){
-            alert('Successful');
+            alert('File Uploaded Successful');
           }
           else{
             alert('Could not upload file.');
@@ -67,27 +67,6 @@ const xhr = new XMLHttpRequest();
       };
       xhr.send(postData);
     }
-	/*
-	  var data = new FormData();
-		$.each(files, function(key, value)
-		{
-        data.append(key, value);
-		});
-        $.ajax({
-            type: 'POST',
-            url: '/upload',
-            data: data,
-            contentType: false,
-            cache: false,
-            processData: false,
-            async: false,
-            success: function(data) {
-                console.log('Success!');
-            },
-        });
-    });
-});
-*/
 
   </script>
   <style>

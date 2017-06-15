@@ -21,7 +21,7 @@ from werkzeug.utils import secure_filename
 
 
 app = Flask(__name__)
-app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'
+app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT' #
 
 	
 @app.route('/')
@@ -43,8 +43,8 @@ def upload():
         data= pd.read_csv(awsFilepath)
         session['data']= awsFilepath
         session['columnNames']=list(data)  
-        return render_template('dependant.html')
-    return render_template('account.html')
+        return jsonify( 'predictors':session['columnNames'])
+    return render_template('index.html')
 
 
 #webhook to extract dependant Variable from user entry
