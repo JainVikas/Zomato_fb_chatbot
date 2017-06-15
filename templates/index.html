@@ -76,13 +76,13 @@ $(document).ready(function() {
     targetList.add(option);
  	}
 	<!--- adding model list --->
-	var models = $.getJSON( "model.json")
+	var models = $.getJSON(url_for('static', filename="data/model.json"))
 	alert(models);
 	console.log(models.length)
 	var modelList = document.getElementById("models");
 	for(var i=0; i<models.length; i++){
 	var option = document.createElement("option");
-	option.text = jsonData.predictors[i];
+	option.text =models[i];
     modelList.add(option);
  	}
 });
