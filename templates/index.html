@@ -4,31 +4,22 @@
   <title>Mock UI</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.min.css') }}">
-  <script src="{{ url_for('static',filename='js/jquery-3.2.1.min.js') }}"></script>
-  <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
- 
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <!--- for Server--->
+  <!--- <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.min.css') }}">
+  <script src="{{ url_for('static',filename='js/jquery-1.11.2.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>--->
+  
   <script>
   $(document).on('click', '.browse', function(){
   var file = $(this).parent().parent().parent().find('.file');
   file.trigger('click');
 });
-    function initUpload(){
-      const files = document.getElementById('file-input').files;
-      const file = files[0];
-      if(!file){
-        return alert('No file selected.');
-      }
-      uploadFile(file);
-    }
-
-    /*
-       Bind listeners when the page loads.
-    */
-    (() => {
-      document.getElementById('file-input').onchange = initUpload;
-    })();
-
+$(document).on('change', '.file', function(){
+  $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+});
 $(document).ready(function() {
  $('.btnNext').click(function(){
   $('.nav-tabs > .active').next('li').find('a').trigger('click');
@@ -46,7 +37,7 @@ $('.nav-tabs li').mousedown(function(){
        Function called when file input updated. If there is a file selected, then
        start upload procedure by asking for a signed request from the app.
     */
-/*
+ 
 $(function() {
     $('#file-input').change(function() {
         var form_data = new FormData($('#file-input')[0]);
@@ -64,27 +55,7 @@ $(function() {
         });
     });
 });
-*/
-    function uploadFile(file){
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', "/upload");
-      xhr.setRequestHeader('x-amz-acl', 'public-read');
 
-      const postData = new FormData();
-      postData.append('file', file);
-
-      xhr.onreadystatechange = () => {
-        if(xhr.readyState === 4){
-          if(xhr.status === 200 || xhr.status === 204){
-            alert('uploaded successfully');
-          }
-          else{
-            alert('Could not upload file.');
-          }
-        }
-      };
-      xhr.send(postData);
-    }
   </script>
   <style>
 .file {
