@@ -1,8 +1,1 @@
-[
-      "LR",
-      "LDA",
-      "KNN",
-      "CART",
-      "NB",
-      "SVM"
-      ]
+'{"models":["LR","LDA","KNN","CART","NB","SVM"]}'
