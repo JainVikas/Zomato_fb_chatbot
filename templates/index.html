@@ -198,13 +198,18 @@ predictor1name = document.getElementById("predictors-1").options[document.getEle
 predictor2name = document.getElementById("predictors-2").options[document.getElementById("predictors-2").selectedIndex].text;
 predictor3name = document.getElementById("predictors-3").options[document.getElementById("predictors-3").selectedIndex].text;
 predictor4name = document.getElementById("predictors-4").options[document.getElementById("predictors-4").selectedIndex].text;
+predictor1Value= document.getElementById("predictors-1-text").text;
+predictor2Value = document.getElementById("predictors-2-text").text;
+predictor3Value = document.getElementById("predictors-3-text").text;
+predictor4Value = document.getElementById("predictors-4-text").text;
 
     $.ajax({
             type: 'POST',
 			url:'/predict',
 			datatype:'json', 
 		<!---below data is currently hardcoded considering 4 values only, find ways to populate it automaticaly according to number of predictors--->
-            data:{predictor1:predictor1name, predictor2:predictor2name, predictor3:predictor3name, predictor:predictor4name},
+            data:{predictor1:predictor1name,predictor1Val:predictor1Value, predictor2:predictor2name,predictor2Val:predictor2Value, 
+			predictor3:predictor3name,predictor3Val:predictor3Value, predictor:predictor4name,predictor4Val:predictor4Value, },
 			success: function(data){
 			updateScore(data)
 			}
@@ -422,7 +427,7 @@ $('.nav-tabs li').mousedown(function(){
 				</select>
 			</div>
 			<div class="col-md-2">
-				<input class="form-control" type="text" style="width:150px"/>
+				<input id="predictors-1-text" class="form-control" type="text" style="width:150px"/>
 			</div>
 			<div class="form-group col-md-3">
 				<label>Predictors-2:</label>
@@ -431,7 +436,7 @@ $('.nav-tabs li').mousedown(function(){
 				</select>
 			</div>
 			<div class="col-md-2">
-				<input class="form-control" type="text" style="width:150px"/>
+				<input id="predictors-2-text" class="form-control" type="text" style="width:150px"/>
 			</div>
 			<div class="form-group col-md-3">
 				<label>Predictors-3:</label>
@@ -440,7 +445,7 @@ $('.nav-tabs li').mousedown(function(){
 				</select>
 			</div>
 			<div class="col-md-2">
-				<input class="form-control" type="text" style="width:150px"/>
+				<input id="predictors-3-text" class="form-control" type="text" style="width:150px"/>
 			</div>
 			<div class="form-group col-md-3">
 				<label>Predictors-4:</label>
@@ -449,7 +454,7 @@ $('.nav-tabs li').mousedown(function(){
 				</select>
 			</div>
 			<div class="col-md-2">
-				<input class="form-control" type="text" style="width:150px"/>
+				<input  id="predictors-4-text" class="form-control" type="text" style="width:150px"/>
 			</div>
 			<div class="col-md-2">
 				<button id = 'predictButton' class="btn btn-primary" type="button">Predict</button>
