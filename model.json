@@ -1,8 +1,8 @@
 {
-      "LR":"", 
-      "LDA":"",
-      "KNN":"",
-      "CART":"",
-      "NB":"",
-      "SVM":"",
+      "LR":"LR", 
+      "LDA":"LDA",
+      "KNN":"KNN",
+      "CART":"CART",
+      "NB":"NB",
+      "SVM":"SVM"
       }
