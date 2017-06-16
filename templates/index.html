@@ -55,7 +55,25 @@ $(document).on('change', '.file', function(){
   $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
 });
 <!--- model function --->
+/*using python to load*/
 function getModel(){
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', '/readModels');
+      xhr.onreadystatechange = () => {
+        if(xhr.readyState === 4){
+          if(xhr.status === 200){
+            modelValues= JSON.parse(xhr.responseText);
+          }
+          else{
+            alert('Could not get model file.');
+          }
+        }
+      };
+      xhr.send();
+    }
+
+ /* using js to load model.json
+ function getModel(){
       $.ajax({
             url: "model.json",
             method: "GET",
@@ -67,7 +85,7 @@ function getModel(){
 			}
        });
     }
-
+	*/
 $(document).ready(function() {
  $('.btnNext').click(function(){
   $('.nav-tabs > .active').next('li').find('a').trigger('click');
@@ -89,7 +107,7 @@ $(document).ready(function() {
  	}
 	<!--- adding model list --->
 	getModel();
-	console.log(modelValues)
+	console.log(modelValues.length)
 	console.log(modelValues.length)
 	var modelList = document.getElementById("models");
 	for(var i=0; i<modelValues.length; i++){
