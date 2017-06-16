@@ -55,7 +55,7 @@ $(document).on('change', '.file', function(){
   $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
 });
 <!--- model function --->
-/*using python to load
+/*using python to load*/
 function getModel(){
       const xhr = new XMLHttpRequest();
       xhr.open('GET', '/readModels');
@@ -71,8 +71,8 @@ function getModel(){
       };
       xhr.send();
     }
-*/
- /* using js to load model.json*/
+
+ /* using js to load model.json
  function getModel(){
       $.ajax({
             url: "/app/static/model.json",
@@ -85,7 +85,7 @@ function getModel(){
 			}
        });
     }
-	
+	*/
 $(document).ready(function() {
  $('.btnNext').click(function(){
   $('.nav-tabs > .active').next('li').find('a').trigger('click');
