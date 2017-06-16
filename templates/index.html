@@ -106,7 +106,6 @@ $(document).ready(function() {
     targetList.add(option);
  	}
 	<!--- adding model list --->
-	console.log(modelValues.length)
 	var modelList = document.getElementById("models");
 	for(var i=0; i<modelValues.models.length; i++){
 	var option = document.createElement("option");
@@ -310,10 +309,7 @@ $('.nav-tabs li').mousedown(function(){
 			<div class="form-group col-md-4">
 				<label>Model:</label>
 				<select id= "models" class="form-control" style="width:200px">
-					<option>LR</option>
-					<option>Model-2</option>
-					<option>Model-3</option>
-					<option>Model-4</option>
+				
 				</select>
 			</div>
 			<div class="col-md-2">
