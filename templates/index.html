@@ -92,26 +92,32 @@ $(document).ready(function() {
   $('.nav-tabs > .active').prev('li').addClass('completed');
   jsonData= response;
 	<!---- adding prediction elements--->
+	if($("#predictors option").length == 0 ){
 	var predictorList = document.getElementById("predictors");
 	for(var i=0; i<jsonData.predictors.length; i++){
 	var option = document.createElement("option");
 	option.text = jsonData.predictors[i];
     predictorList.add(option);
  	}
+	}
 	<!---- adding targets elements--->
+	if($("#targets option").length == 0 ){
 	var targetList = document.getElementById("targets");
 	for(var i=0; i<jsonData.predictors.length; i++){
 	var option = document.createElement("option");
 	option.text = jsonData.predictors[i];
     targetList.add(option);
  	}
+	}
 	<!--- adding model list --->
+	if($("#models option").length == 0 ){
 	var modelList = document.getElementById("models");
 	for(var i=0; i<modelValues.models.length; i++){
 	var option = document.createElement("option");
 	option.text =modelValues.models[i];
     modelList.add(option);
  	}
+	}
 });
 
 
