@@ -350,10 +350,10 @@ $('.nav-tabs li').mousedown(function(){
 			<div class="form-group col-md-4">
 				
 				<div class="radio col-sm-6">
-					<label><input type="radio" name="optradio"> Single</label>
+					<label><input type="radio" name="optradio"> Single </label>
 				</div>
 				<div class="radio col-sm-6">
-				  <label><input type="radio" name="optradio"> Bulk</label>
+				  <label><input type="radio" name="optradio"> Bulk </label>
 				</div>
 			
 			</div>
@@ -363,11 +363,8 @@ $('.nav-tabs li').mousedown(function(){
 				<div class="form-inline">
 			<div class="form-group col-md-3">
 				<label>Predictors-1:</label>
-				<select class="form-control" style="width:150px">
-					<option>Predictors-1</option>
-					<option>Predictors-2</option>
-					<option>Predictors-3</option>
-					<option>Predictors-4</option>
+				<select id="predictors" class="form-control" style="width:150px">
+					
 				</select>
 			</div>
 			<div class="col-md-2">
@@ -375,18 +372,33 @@ $('.nav-tabs li').mousedown(function(){
 			</div>
 			<div class="form-group col-md-3">
 				<label>Predictors-2:</label>
-				<select class="form-control" style="width:150px">
-					<option>Predictors-1</option>
-					<option>Predictors-2</option>
-					<option>Predictors-3</option>
-					<option>Predictors-4</option>
+				<select id="predictors" class="form-control" style="width:150px">
+					
+				</select>
+			</div>
+			<div class="col-md-2">
+				<input class="form-control" type="text" style="width:150px"/>
+			</div>
+			<div class="form-group col-md-3">
+				<label>Predictors-3:</label>
+				<select id="predictors" class="form-control" style="width:150px">
+					
+				</select>
+			</div>
+			<div class="col-md-2">
+				<input class="form-control" type="text" style="width:150px"/>
+			</div>
+			<div class="form-group col-md-3">
+				<label>Predictors-4:</label>
+				<select id="predictors" class="form-control" style="width:150px">
+					
 				</select>
 			</div>
 			<div class="col-md-2">
 				<input class="form-control" type="text" style="width:150px"/>
 			</div>
 			<div class="col-md-2">
-				<button class="btn btn-primary" type="button">Predict</button>
+				<button id = 'predict' class="btn btn-primary" type="button">Predict</button>
 			</div>
 			</div>
 			</div>
