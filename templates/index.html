@@ -56,19 +56,16 @@ $(document).on('change', '.file', function(){
 });
 <!--- model function --->
 function getModel(){
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', '/readModels');
-      xhr.onreadystatechange = () => {
-        if(xhr.readyState === 4){
-          if(xhr.status === 200){
-            modelValues= JSON.parse(xhr.responseText);
-          }
-          else{
-            alert('Could not get model file.');
-          }
-        }
-      };
-      xhr.send();
+      $.ajax({
+            url: "model.json",
+            method: "GET",
+            dataType: "JSON",
+            success: function(data){
+			console.log(data)
+			modelValues = data;
+			console.log(modelValues)
+			}
+       });
     }
 
 $(document).ready(function() {
