@@ -118,6 +118,42 @@ $(document).ready(function() {
     modelList.add(option);
  	}
 	}
+/*adding dropdowns for predict page predictors, in future all these elements need to be driven by json, for now just adding the already 
+available JSON from column names
+*/
+if($("#predictors-1 option").length == 0 ){
+	var predictorList = document.getElementById("predictors-1");
+	for(var i=0; i<jsonData.predictors.length; i++){
+	var option = document.createElement("option");
+	option.text = jsonData.predictors[i];
+    predictorList.add(option);
+ 	}
+	}
+if($("#predictors-2 option").length == 0 ){
+	var predictorList = document.getElementById("predictors-2");
+	for(var i=0; i<jsonData.predictors.length; i++){
+	var option = document.createElement("option");
+	option.text = jsonData.predictors[i];
+    predictorList.add(option);
+ 	}
+	}
+if($("#predictors-3 option").length == 0 ){
+	var predictorList = document.getElementById("predictors-3");
+	for(var i=0; i<jsonData.predictors.length; i++){
+	var option = document.createElement("option");
+	option.text = jsonData.predictors[i];
+    predictorList.add(option);
+ 	}
+	}
+if($("#predictors-4 option").length == 0 ){
+	var predictorList = document.getElementById("predictors-4");
+	for(var i=0; i<jsonData.predictors.length; i++){
+	var option = document.createElement("option");
+	option.text = jsonData.predictors[i];
+    predictorList.add(option);
+ 	}
+	}
+
 });
 
 
@@ -363,7 +399,7 @@ $('.nav-tabs li').mousedown(function(){
 				<div class="form-inline">
 			<div class="form-group col-md-3">
 				<label>Predictors-1:</label>
-				<select id="predictors" class="form-control" style="width:150px">
+				<select id="predictors-1" class="form-control" style="width:150px">
 					
 				</select>
 			</div>
@@ -372,7 +408,7 @@ $('.nav-tabs li').mousedown(function(){
 			</div>
 			<div class="form-group col-md-3">
 				<label>Predictors-2:</label>
-				<select id="predictors" class="form-control" style="width:150px">
+				<select id="predictors-2" class="form-control" style="width:150px">
 					
 				</select>
 			</div>
@@ -381,7 +417,7 @@ $('.nav-tabs li').mousedown(function(){
 			</div>
 			<div class="form-group col-md-3">
 				<label>Predictors-3:</label>
-				<select id="predictors" class="form-control" style="width:150px">
+				<select id="predictors-3" class="form-control" style="width:150px">
 					
 				</select>
 			</div>
@@ -390,7 +426,7 @@ $('.nav-tabs li').mousedown(function(){
 			</div>
 			<div class="form-group col-md-3">
 				<label>Predictors-4:</label>
-				<select id="predictors" class="form-control" style="width:150px">
+				<select id="predictors-4" class="form-control" style="width:150px">
 					
 				</select>
 			</div>
