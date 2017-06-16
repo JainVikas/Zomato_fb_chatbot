@@ -14,7 +14,7 @@
   
   <script>
   var response;
-  var modelValues;
+  var modelValues = '{"models":["LR","LDA","KNN","CART","NB","SVM"]}';
 
   $(document).on('click', '.browse', function(){
   var file = $(this).parent().parent().parent().find('.file');
@@ -54,8 +54,8 @@ const xhr = new XMLHttpRequest();
 $(document).on('change', '.file', function(){
   $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
 });
-<!--- model function --->
-/*using python to load*/
+<!--- model function --->NOT WORKING AT PRESENT, so intializing in index itself
+/*using python to load
 function getModel(){
       const xhr = new XMLHttpRequest();
       xhr.open('GET', '/readModels');
@@ -71,7 +71,7 @@ function getModel(){
       };
       xhr.send();
     }
-
+*/
  /* using js to load model.json
  function getModel(){
       $.ajax({
@@ -106,13 +106,11 @@ $(document).ready(function() {
     targetList.add(option);
  	}
 	<!--- adding model list --->
-	getModel();
-	console.log(modelValues.length)
 	console.log(modelValues.length)
 	var modelList = document.getElementById("models");
-	for(var i=0; i<modelValues.length; i++){
+	for(var i=0; i<modelValues.models.length; i++){
 	var option = document.createElement("option");
-	option.text =modelValues[i];
+	option.text =modelValues.models[i];
     modelList.add(option);
  	}
 });
