@@ -137,7 +137,6 @@ var targetColumn = targ.options[targ.selectedIndex].text;
 $('#trainModel').click(function(){
 var modelList = document.getElementById("models");
 var modelSelected = modelList.options[modelList.selectedIndex].text;
-
     $.ajax({
             type: 'POST',
 			url:'/selectModel',
@@ -146,7 +145,6 @@ var modelSelected = modelList.options[modelList.selectedIndex].text;
 			success: function(data){
 			updateScore(data)
 			}
-			
 });
 });
 <!---- function to display score/ image accordingly --->
