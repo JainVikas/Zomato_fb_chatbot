@@ -49,7 +49,6 @@ def upload():
 
 @app.route('/readModels', methods=[ 'GET'])
 def readModels():
-    filename = 
     with open('model.json') as model_file:
         data  = json.load(model_file)
         #models = data['models']
