@@ -208,10 +208,12 @@ predictor4Value = document.getElementById("predictors-4-text").value;
 			url:'/predict',
 			datatype:'json', 
 		<!---below data is currently hardcoded considering 4 values only, find ways to populate it automaticaly according to number of predictors--->
-            data:{predictor1:predictor1name,predictor1Val:predictor1Value, predictor2:predictor2name,predictor2Val:predictor2Value, 
+          /*  data:{predictor1:predictor1name,predictor1Val:predictor1Value, predictor2:predictor2name,predictor2Val:predictor2Value, 
 			predictor3:predictor3name,predictor3Val:predictor3Value, predictor4:predictor4name,predictor4Val:predictor4Value},
+			*/
+			data:{predictor1Val:predictor1Value,predictor2Val:predictor2Value,predictor3Val:predictor3Value, predictor4Val:predictor4Value},
 			success: function(data){
-			updateScore(data)
+			predict(data)
 			}
 });
 });
