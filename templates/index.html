@@ -198,10 +198,10 @@ predictor1name = document.getElementById("predictors-1").options[document.getEle
 predictor2name = document.getElementById("predictors-2").options[document.getElementById("predictors-2").selectedIndex].text;
 predictor3name = document.getElementById("predictors-3").options[document.getElementById("predictors-3").selectedIndex].text;
 predictor4name = document.getElementById("predictors-4").options[document.getElementById("predictors-4").selectedIndex].text;
-predictor1Value= document.getElementById("predictors-1-text").text;
-predictor2Value = document.getElementById("predictors-2-text").text;
-predictor3Value = document.getElementById("predictors-3-text").text;
-predictor4Value = document.getElementById("predictors-4-text").text;
+predictor1Value= document.getElementById("predictors-1-text").value;
+predictor2Value = document.getElementById("predictors-2-text").value;
+predictor3Value = document.getElementById("predictors-3-text").value;
+predictor4Value = document.getElementById("predictors-4-text").value;
 
     $.ajax({
             type: 'POST',
@@ -209,7 +209,7 @@ predictor4Value = document.getElementById("predictors-4-text").text;
 			datatype:'json', 
 		<!---below data is currently hardcoded considering 4 values only, find ways to populate it automaticaly according to number of predictors--->
             data:{predictor1:predictor1name,predictor1Val:predictor1Value, predictor2:predictor2name,predictor2Val:predictor2Value, 
-			predictor3:predictor3name,predictor3Val:predictor3Value, predictor:predictor4name,predictor4Val:predictor4Value, },
+			predictor3:predictor3name,predictor3Val:predictor3Value, predictor4:predictor4name,predictor4Val:predictor4Value},
 			success: function(data){
 			updateScore(data)
 			}
