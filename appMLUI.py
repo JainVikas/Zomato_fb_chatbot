@@ -50,9 +50,10 @@ def upload():
 @app.route('/readModels', methods=[ 'GET'])
 def readModels():
     with open('model.json') as model_file:
-        data  = json.load(model_file)
-        #models = data['models']
-        return jsonify({'models':'models'})
+        res = json.dumps(model_file, indent=4)
+        r = make_response(res)
+        r.headers['Content-Type'] = 'application/json'
+        return r
     return jsonify({'not working'})
 #webhook to extract dependant Variable from user entry
 @app.route('/view', methods=['POST', 'GET'])
