@@ -4,5 +4,5 @@
       "KNN":"KNN",
       "CART":"CART",
       "NB":"NB",
-      "SVM":"SVM",
+      "SVM":"SVM"
       }
