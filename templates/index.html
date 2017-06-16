@@ -14,7 +14,7 @@
   
   <script>
   var response;
-  var modelValues = '{"models":["LR","LDA","KNN","CART","NB","SVM"]}';
+  var modelValues = JSON.parse('{"models":["LR","LDA","KNN","CART","NB","SVM"]}');
 
   $(document).on('click', '.browse', function(){
   var file = $(this).parent().parent().parent().find('.file');
