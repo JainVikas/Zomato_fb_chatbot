@@ -67,7 +67,10 @@ class Zomato:
                 print(res.getcode())
                 json_data = json.load(res)  
 				#changing below return value to json response
-                return json_data #(json.dumps(json_data, indent=4, sort_keys=True))
+                res=json.dumps(json_data, indent=4, sort_keys=True)
+                r = make_response(res)
+                r.headers['Content-Type'] = 'application/json'
+                return r
             except HTTPError as e:
                 print(str(e.code)+"\t"+e.reason)
                 return
