@@ -33,7 +33,9 @@ def webhook_manually():
 @app.route('/webhook_viaFB', methods=['POST', 'GET'])
 def webhook_viaFB():
     z = Zomato("ZOMATO-API-KEY")
-    testing_output = z.parse("restaurant","res_id=16774318")
+    req = request.get_json(silent=True, force=True)
+    print(json.dumps(req, indent=4))
+    testing_output = z.parse("q","lat="+req.get("latitude"),"lon="+req.get("longitude"))
     #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
     
     return jsonify({"messages": [{"text": "How can I help you?"}, {"text": "your api key is"+testing_output["apikey"]}]})   	
