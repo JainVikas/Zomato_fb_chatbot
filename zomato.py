@@ -55,7 +55,7 @@ class Zomato:
         if all_parameters:
             all_parameters = all_parameters[:-1]
         output = self._execute(endpoint.lower(),all_parameters)
-		return output
+        return output
             
     def _execute(self,endpoint,parameter):
         url = self.base_url + endpoint + "?" + parameter
