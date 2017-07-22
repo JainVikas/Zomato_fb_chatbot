@@ -35,7 +35,7 @@ def webhook_viaFB():
     z = Zomato("ZOMATO-API-KEY")
     req = request.get_json(silent=True, force=True)
     print(json.dumps(req, indent=4))
-    testing_output = z.parse("lat="+str(req.get("latitude")),"lon="+str(req.get("longitude")))
+    testing_output = z.parse("search","lat="+str(req.get("latitude")),"lon="+str(req.get("longitude")))
     #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
     
     return jsonify({"messages": [{"text": "How can I help you?"}, {"text": "your locality key is"+str(testing_output["location"]["locality"])}]})   	
