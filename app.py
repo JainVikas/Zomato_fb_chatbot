@@ -40,8 +40,9 @@ def webhook():
     z.parse("categories","")
     # A call to restaurants endppoint from zomato 
     # API with required parameters res_id
-    testing_output = z.parse("restaurant","res_id=16774318")	
-    return testing_output #jsonify({"messages": [{"text": "WEBHOOK____Welcome to our store!"}, {"text": "How can I help you?"}]})    
+    testing_output = z.parse("restaurant","res_id=16774318")
+    
+    return jsonify({"messages": [{"text": testing_output.get("apikey") }, {"text": "How can I help you?"}]})    
 	
 if __name__ == '__main__':
   app.debug = True
