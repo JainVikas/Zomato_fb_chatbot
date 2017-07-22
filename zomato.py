@@ -75,7 +75,7 @@ class Zomato:
             req.add_header("user_key", self.api_key) 
             try:
                 res = urlopen(req)
-                print(res.code())
+                return res.code()
             except HTTPError as e:
                 print(str(e.code)+"\t"+e.reason)
                 return
