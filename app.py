@@ -48,7 +48,7 @@ def webhook():
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     z= r.get_json(silent=True, force=True)
-    return jsonify({"messages": [{"text": r.get("apikey") },{"text": z.get("apikey") ,{"text": "How can I help you?"}]})    
+    return jsonify({"messages": [{"text": r.get("apikey") },{"text": z.get("apikey")},{"text": "How can I help you?"}]})    
 	
 if __name__ == '__main__':
   app.debug = True
