@@ -55,7 +55,10 @@ class Zomato:
         if all_parameters:
             all_parameters = all_parameters[:-1]
         output = self._execute(endpoint.lower(),all_parameters)
-        return output
+        res=json.dumps(output, indent=4, sort_keys=True)
+        r = make_response(res)
+        r.headers['Content-Type'] = 'application/json'
+        return r
             
     def _execute(self,endpoint,parameter):
         url = self.base_url + endpoint + "?" + parameter

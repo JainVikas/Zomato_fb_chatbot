@@ -32,7 +32,7 @@ def webhook():
     # API with required parameters res_id
     testing_output = z.parse("restaurant","res_id=16774318")
     #response = testing_output.get_json(silent=True, force=True)
-    print(testing_output)
+    print(json.dumps(testing_output, indent=4, sort_keys=True))
     req = testing_output.get_json(silent=True, force=True)
     print(req.get("apikey"))
     return jsonify({"messages": [{"text": "How can I help you?"}]})    
