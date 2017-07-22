@@ -41,7 +41,7 @@ def webhook():
     # A call to restaurants endppoint from zomato 
     # API with required parameters res_id
     testing_output = z.parse("restaurant","res_id=16774318")
-    response = request.get_json(silent=True, force=True)
+    response = testing_output.get_json(silent=True, force=True)
     return jsonify({"messages": [{"text": response.get("apikey") }, {"text": "How can I help you?"}]})    
 	
 if __name__ == '__main__':
