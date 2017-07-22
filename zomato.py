@@ -55,6 +55,7 @@ class Zomato:
         if all_parameters:
             all_parameters = all_parameters[:-1]
         output = self._execute(endpoint.lower(),all_parameters)
+        print(output)
         res=json.dumps(output, indent=4, sort_keys=True)
         r = make_response(res)
         r.headers['Content-Type'] = 'application/json'
@@ -71,10 +72,9 @@ class Zomato:
                 print(res.getcode())
                 json_data = json.load(res)  
 				#changing below return value to json response
-                res=json.dumps(json_data, indent=4, sort_keys=True)
-                r = make_response(res)
-                r.headers['Content-Type'] = 'application/json'
-                return r
+				print(json.dumps(json_data, indent=4, sort_keys=True)
+                return json.dumps(json_data, indent=4, sort_keys=True)
+                
             except HTTPError as e:
                 print(str(e.code)+"\t"+e.reason)
                 return
