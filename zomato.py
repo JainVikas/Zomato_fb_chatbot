@@ -3,7 +3,7 @@ import urllib3
 from urllib.parse import urlparse, urlencode
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError
-from flask import make_response
+from flask import make_response, jsonify
 class Zomato:
     
     def __init__(self,api_key,response_content_type="application/json",base_url="https://developers.zomato.com/api/v2.1/"):
@@ -55,7 +55,7 @@ class Zomato:
         if all_parameters:
             all_parameters = all_parameters[:-1]
         output = self._execute(endpoint.lower(),all_parameters)
-        print(output)
+        print(json.dumps(output, indent=4, sort_keys=True))
         res=json.dumps(output, indent=4, sort_keys=True)
         r = make_response(res)
         r.headers['Content-Type'] = 'application/json'
@@ -73,7 +73,7 @@ class Zomato:
                 json_data = json.load(res)  
 				#changing below return value to json response
                 print(json.dumps(json_data, indent=4, sort_keys=True)
-                return {"data" : json_data}
+                return jsonify({"data" : json_data})
                 
             except HTTPError as e:
                 print(str(e.code)+"\t"+e.reason)
