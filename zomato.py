@@ -27,11 +27,12 @@ class Zomato:
         all_parameters = ""
         parameters = parameters.replace(" ","")
         params = parameters.split(",")
+        print(params)
         para_value = []
         for param in params:
             para_value.extend( param.split("="))
         endpoint_dict = self.endpoint_param[endpoint]
-        
+        print(para_value)
         if parameters:
             if "required" in endpoint_dict.keys():
                 required_param_list = endpoint_dict["required"]
