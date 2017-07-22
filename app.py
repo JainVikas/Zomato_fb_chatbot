@@ -1,20 +1,10 @@
-from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, redirect, url_for
+from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify, redirect, url_for, make_response
 import os, json, boto3
 from boto3.s3.transfer import S3Transfer
 from botocore.client import Config
 import pandas as pd
 from pandas.tools.plotting import scatter_matrix
 import numpy as np
-from sklearn import model_selection
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import accuracy_score
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn.naive_bayes import GaussianNB
-from sklearn.svm import SVC
 from zomato import Zomato
 #rendering page
 from werkzeug.utils import secure_filename
