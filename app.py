@@ -33,8 +33,8 @@ def webhook():
     testing_output = z.parse("categories","")
     #response = testing_output.get_json(silent=True, force=True)
     print(json.dumps(testing_output, indent=4, sort_keys=True))
-    req = testing_output.get_json(silent=True, force=True)
-    print(req.get("apikey"))
+    req = testing_output["apikey"]
+    print(req)
     return jsonify({"messages": [{"text": "How can I help you?"}]})    
 	
 if __name__ == '__main__':
