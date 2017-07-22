@@ -35,10 +35,10 @@ def webhook_viaFB():
     z = Zomato("ZOMATO-API-KEY")
     req = request.get_json(silent=True, force=True)
     print(json.dumps(req, indent=4))
-    testing_output = z.parse("search","lat="+str(req.get("latitude")),"lon="+str(req.get("longitude")))
+    testing_output = z.parse("restaurant","res_id=16774318")
     #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
     
-    return jsonify({"messages": [{"text": "How can I help you?"}, {"text": "your locality key is"+str(testing_output["location"]["locality"])}]})   	
+    return jsonify({"messages": [{"text": "How can I help you?"}, {"text": "your api key is"+testing_output["apikey"]}]})   	
 if __name__ == '__main__':
   app.debug = True
   port = int(os.environ.get('PORT', 5000))
