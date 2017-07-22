@@ -33,10 +33,11 @@ def webhook():
     testing_output = z.parse("restaurant","res_id=16774318")
     #response = testing_output.get_json(silent=True, force=True)
     print(testing_output)
+    print(testing_output.get("apikey"))
     res = json.dumps(testing_output, indent=4)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
-    return jsonify({"messages": [{"text": r.get("apikey") },{"text": "How can I help you?"}]})    
+    return jsonify({"messages": [{"text": "How can I help you?"}]})    
 	
 if __name__ == '__main__':
   app.debug = True
