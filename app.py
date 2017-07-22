@@ -38,7 +38,7 @@ def webhook_viaFB():
     longitude = request.args.get('longitude')
     print(longitude)
     print(latitude)
-    testing_output = z.parse("search","res_id=16774318")
+    testing_output = z.parse("restaurant","res_id=16774318")
     #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
     
     return jsonify({"messages": [{"text": "How can I help you?"}, {"text": "your api key is"+testing_output["apikey"]}]})   	
