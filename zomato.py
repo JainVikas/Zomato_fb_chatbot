@@ -65,8 +65,7 @@ class Zomato:
             try:
                 res = urlopen(req)
                 print(res.getcode())
-                json_data = json.load(res)  
-                print (json.dumps(json_data, indent=4, sort_keys=True))
+                json_data = json.load(res)
                 return json_data
             except HTTPError as e:
                 print(str(e.code)+"\t"+e.reason)

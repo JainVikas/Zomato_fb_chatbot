@@ -23,20 +23,20 @@ def index():
     sumSessionCounter()
     return jsonify({"messages": [{"text": "Welcome to our store!"}, {"text": "How can I help you?"}]})
 
-@app.route('/webhook', methods=['POST', 'GET'])
-def webhook():
+@app.route('/webhook_manually', methods=['POST', 'GET'])
+def webhook_manually():
     z = Zomato("ZOMATO-API-KEY")
-	# A call to categories endpoint from zomato API.
-    
-    # A call to restaurants endppoint from zomato 
-    # API with required parameters res_id
     testing_output = z.parse("restaurant","res_id=16774318")
-    #response = testing_output.get_json(silent=True, force=True)
-    print(json.dumps(testing_output, indent=4, sort_keys=True))
-    req = testing_output["apikey"]
-    print(req)
-    return jsonify({"messages": [{"text": "How can I help you?"}]})    
-	
+    #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
+    
+    return jsonify({"messages": [{"text": "How can I help you?"}, {"text": "your api key is"+testing_output["apikey"]}]})    
+@app.route('/webhook_viaFB', methods=['POST', 'GET'])
+def webhook_viaFB():
+    z = Zomato("ZOMATO-API-KEY")
+    testing_output = z.parse("restaurant","res_id=16774318")
+    #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
+    
+    return jsonify({"messages": [{"text": "How can I help you?"}, {"text": "your api key is"+testing_output["apikey"]}]})   	
 if __name__ == '__main__':
   app.debug = True
   port = int(os.environ.get('PORT', 5000))
