@@ -35,11 +35,12 @@ def webhook_viaFB():
     query_string = request.query_string
     latitude = request.args.get('latitude')
     longitude = request.args.get('longitude')
+    category = request.args.get('text')
     print(longitude)
     print(latitude)
     print(query_string)
-    param = "lat="+str(latitude) + ","+ "lon="+str(longitude)
-    testing_output = z.parse("search",query_string)
+    param = "lat="+str(latitude) + ","+ "lon="+str(longitude) + "," + "category=" +str(category)
+    testing_output = z.parse("search",param)
     #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
     
     #return jsonify({"messages": [{"text": "How can I help you?"}, {"text": "your api key is"+testing_output["restaurants"][0]["restaurant"]["apikey"]}]})   	
