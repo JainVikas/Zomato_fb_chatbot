@@ -72,7 +72,7 @@ class Zomato:
                 print(res.getcode())
                 json_data = json.load(res)  
 				#changing below return value to json response
-				print(json.dumps(json_data, indent=4, sort_keys=True)
+                print(json.dumps(json_data, indent=4, sort_keys=True)
                 return json.dumps(json_data, indent=4, sort_keys=True)
                 
             except HTTPError as e:
