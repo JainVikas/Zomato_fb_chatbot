@@ -36,15 +36,16 @@ def webhook_viaFB():
     latitude = request.args.get('latitude')
     longitude = request.args.get('longitude')
     category = request.args.get('text')
+    cuisine = request.args.get('cuisine')
+    print(cuisine)
     print(longitude)
     print(latitude)
     print(query_string)
-    param = "lat="+str(latitude) + ","+ "lon="+str(longitude) + "," + "category=" +str(category)
-    testing_output = z.parse("search",param)
+    testing_output = z.parse("search","lat="+str(latitude) + ","+ "lon="+str(longitude) + "," + "category=" +str(category))
     #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
     
-    #return jsonify({"messages": [{"text": "How can I help you?"}, {"text": "your api key is"+testing_output["restaurants"][0]["restaurant"]["apikey"]}]})   	
-    return jsonify({"messages":[{"attachment":{"type":"template","payload":{"template_type":"generic","elements":[{"title":"Classic White T-Shirt","image_url":"http://petersapparel.parseapp.com/img/item100-thumb.png","subtitle":"Soft white cotton t-shirt is back in style","buttons":[{"type":"web_url","url":"https://petersapparel.parseapp.com/view_item?item_id=100","title":"View Item"},{"type":"web_url","url":"https://petersapparel.parseapp.com/buy_item?item_id=100","title":"Buy Item"}]},{"title":"Classic Grey T-Shirt","image_url":"http://petersapparel.parseapp.com/img/item101-thumb.png","subtitle":"Soft gray cotton t-shirt is back in style","buttons":[{"type":"web_url","url":"https://petersapparel.parseapp.com/view_item?item_id=101","title":"View Item"},{"type":"web_url","url":"https://petersapparel.parseapp.com/buy_item?item_id=101","title":"Buy Item"}]}]}}}]})   	
+    return jsonify({"messages": [{"text": "How can I help you?"}, {"text": "your api key is"+testing_output["restaurants"][0]["restaurant"]["apikey"]}]})   	
+    #return jsonify({"messages":[{"attachment":{"type":"template","payload":{"template_type":"generic","elements":[{"title":"Classic White T-Shirt","image_url":"http://petersapparel.parseapp.com/img/item100-thumb.png","subtitle":"Soft white cotton t-shirt is back in style","buttons":[{"type":"web_url","url":"https://petersapparel.parseapp.com/view_item?item_id=100","title":"View Item"},{"type":"web_url","url":"https://petersapparel.parseapp.com/buy_item?item_id=100","title":"Buy Item"}]},{"title":"Classic Grey T-Shirt","image_url":"http://petersapparel.parseapp.com/img/item101-thumb.png","subtitle":"Soft gray cotton t-shirt is back in style","buttons":[{"type":"web_url","url":"https://petersapparel.parseapp.com/view_item?item_id=101","title":"View Item"},{"type":"web_url","url":"https://petersapparel.parseapp.com/buy_item?item_id=101","title":"Buy Item"}]}]}}}]})   	
 if __name__ == '__main__':
   app.debug = True
   port = int(os.environ.get('PORT', 5000))
