@@ -6,6 +6,7 @@ import pandas as pd
 from pandas.tools.plotting import scatter_matrix
 import numpy as np
 from zomato import Zomato
+import urllib.parse as urlparse
 #rendering page
 from werkzeug.utils import secure_filename
 ############################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
@@ -33,9 +34,10 @@ def webhook_manually():
 @app.route('/webhook_viaFB', methods=['POST', 'GET'])
 def webhook_viaFB():
     z = Zomato("ZOMATO-API-KEY")
-    req = request.get_json(silent=True, force=True)
-    print(json.dumps(req, indent=4))
-    testing_output = z.parse("restaurant","res_id=16774318")
+    parsed = urlparse.urlparse(request.target.geturl())
+    print(urlparse.parse_qs(parsed.query)['latitude'])
+    print(urlparse.parse_qs(parsed.query)['longitude'])
+    testing_output = z.parse("search","res_id=16774318")
     #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
     
     return jsonify({"messages": [{"text": "How can I help you?"}, {"text": "your api key is"+testing_output["apikey"]}]})   	
