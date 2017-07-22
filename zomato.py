@@ -26,7 +26,7 @@ class Zomato:
             return
         all_parameters = ""
         parameters = parameters.replace(" ","")
-        params = parameters.split("&")
+        params = parameters.split(",")
         print(params)
         para_value = []
         for param in params:
