@@ -31,7 +31,7 @@ def sumSessionCounter():
 def index():
     # Initialise the counter, or increment it
     sumSessionCounter()
-    return jsonify({"message":"hi i am a chat bot"})
+    return jsonify({"messages": [{"text": "Welcome to our store!"}, {"text": "How can I help you?"}]})
 
 @app.route('/webhook', methods=['POST', 'GET'])
 def webhook():
