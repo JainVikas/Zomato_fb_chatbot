@@ -38,7 +38,7 @@ def webhook_viaFB():
     testing_output = z.parse("q","lat="+req.get("latitude"),"lon="+req.get("longitude"))
     #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
     
-    return jsonify({"messages": [{"text": "How can I help you?"}, {"text": "your api key is"+testing_output["apikey"]}]})   	
+    return jsonify({"messages": [{"text": "How can I help you?"}, {"text": "your api key is"+testing_output["location"]["locality"]}]})   	
 if __name__ == '__main__':
   app.debug = True
   port = int(os.environ.get('PORT', 5000))
