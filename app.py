@@ -34,10 +34,12 @@ def webhook_manually():
 @app.route('/webhook_viaFB', methods=['POST', 'GET'])
 def webhook_viaFB():
     z = Zomato("ZOMATO-API-KEY")
+    query_string = request.query_string
     latitude = request.args.get('latitude')
     longitude = request.args.get('longitude')
     print(longitude)
     print(latitude)
+    print(query_string)
     testing_output = z.parse("restaurant","res_id=16774318")
     #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
     
