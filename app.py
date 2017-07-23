@@ -107,8 +107,8 @@ def restaurant():
         #button_dict["set_attributes"] = {"res_id": testing_output["restaurants"][i]["restaurant"]["id"]} 
         #button_dict["title"]= "Check Reviews"
         #button.append(button_dict)
-        review_dict["title"] = "Rating: " + testing_output["user_review"][i]["review"]["rating"]
-        review_dict["subtitle"] = "Average cost for 2: " + str(testing_output["user_review"][i]["review"]["review_text"])
+        review_dict["title"] = "Rating: " + str(testing_output["user_reviews"][i]["review"]["rating"])
+        review_dict["subtitle"] = "Average cost for 2: " + str(testing_output["user_reviews"][i]["review"]["review_text"])
         review_dict["image_url"] = ""
         #restaurant_dict["buttons"] = button 
         output["messages"][0]["attachment"]["payload"]["elements"].append(review_dict)
