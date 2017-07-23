@@ -110,10 +110,11 @@ def restaurant():
         review_dict["title"] = "Rating: " + str(testing_output["user_reviews"][i]["review"]["rating"])
         review_dict["subtitle"] = testing_output["user_reviews"][i]["review"]["review_text"]
         review_dict["image_url"] = ""
+        
         #restaurant_dict["buttons"] = button 
         output["messages"][0]["attachment"]["payload"]["elements"].append(review_dict)
-    output["messages"][0]["attachment"]["payload"]["redirect_to_blocks"]=["call"]
-    #output["messages"][0]["attachment"]["payload"]["buttons"]=[{"type":"phone_number", "phone_number": "+919538668889","title": "Call to reserve"},{"type":"show_block", "block_name":"restaurant","title":"Try another"}]
+    output["messages"][0]["attachment"]["payload"]["elements"].append({"redirect_to_blocks":["call"]})
+    #output["messages"][0]["attachment"]["payload"]["elements"].append({"buttons":[{"type":"phone_number", "phone_number": "+919538668889","title": "Call to reserve"},{"type":"show_block", "block_name":"restaurant","title":"Try another"}]})
     print(output)
     return jsonify(output)
 
