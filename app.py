@@ -16,7 +16,7 @@ def sumSessionCounter():
     except KeyError:
         session['counter'] = 1
 
-@app.route('/')/
+@app.route('/')
 def index():
     # Initialise the counter, or increment it
     sumSessionCounter()
