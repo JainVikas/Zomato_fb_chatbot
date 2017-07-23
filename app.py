@@ -69,6 +69,7 @@ def webhook_viaFB():
 def collection():
     z = Zomato("ZOMATO-API-KEY")
     collection_id = request.args.get('collection_id')
+    print(request.query_string)
     testing_output = z.parse("collections","lat="+str(session["latitude"]) + ","+ "lon="+str(session["longitude"]) + ","+"collection_id="+str(collection_id))
     print(testing_output)
     return 
