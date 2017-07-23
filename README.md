@@ -19,6 +19,3 @@ Feel free to drop a message or comment here in case of any feedback, I would lov
 Also credit to VikramjitRoy for the Zomato Python wrapper, it helped me focus more on the chatbot rather than creating a wrapper.
 https://github.com/VikramjitRoy/Zomato-Python
 =======
-# Zomato_fb_chatbot
-A very basic chat bot using Zomato API and technologies available.
->>>>>>> 07a79eeafe6bd1c732c3e3bca99628d78af0baa0

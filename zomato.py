@@ -8,7 +8,7 @@ class Zomato:
     
     def __init__(self,api_key,response_content_type="application/json",base_url="https://developers.zomato.com/api/v2.1/"):
         if api_key:
-            self.api_key = "ZOMATO_API_KEY"
+            self.api_key = "your-ZOMATO-API-KEY"
         else:
             print("NO API KEY GIVEN.")
             return
