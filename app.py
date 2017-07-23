@@ -54,9 +54,9 @@ def webhook_viaFB():
     button_dict["url"]= "https://evening-inlet-61642.herokuapp.com/collection?collection_id="+str(testing_output["collections"][1]["collection"]["collection_id"])
     button_dict["title"]= "Explore"
     button.append(button_dict)
-    collection_dict["title"] = testing_output["collections"][1]["collection"]["title"]
-    collection_dict["subtitle"] = testing_output["collections"][1]["collection"]["description"]
-    collection_dict["image_url"] = testing_output["collections"][1]["collection"]["image_url"]
+    collection_dict["title"] = testing_output["collections"][i]["collection"]["title"]
+    collection_dict["subtitle"] = testing_output["collections"][i]["collection"]["description"]
+    collection_dict["image_url"] = testing_output["collections"][i]["collection"]["image_url"]
     collection_dict["buttons"] = button 
     output["messages"][0]["attachment"]["payload"]["elements"].append(collection_dict)
     
