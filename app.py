@@ -39,10 +39,10 @@ def webhook_viaFB():
         session["longitude"]= request.args.get('longitude')
     category = request.args.get('text')
     cuisine = request.args.get('cuisine')
-    print(cuisine)
-    print(longitude)
-    print(latitude)
-    print(query_string)
+    #print(cuisine)
+    #print(longitude)
+    #print(latitude)
+    #print(query_string)
     output ={"messages": [{ "attachment":{"type":"template", "payload":{"template_type":"generic","elements":[]}}}]}
     testing_output = z.parse("collections","lat="+str(session["latitude"]) + ","+ "lon="+str(session["longitude"]))
     #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
