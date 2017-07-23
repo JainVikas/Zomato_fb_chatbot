@@ -46,7 +46,7 @@ def webhook_viaFB():
     output ={"messages": [{ "attachment":{"type":"template", "payload":{"template_type":"generic","elements":[]}}}]}
     testing_output = z.parse("collections","lat="+str(session["latitude"]) + ","+ "lon="+str(session["longitude"]))
     #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
-    for i in range(8):
+    for i in range(9):
     #len(testing_output["collections"])):
         collection_dict={}
         button=[]
@@ -71,7 +71,10 @@ def collection():
     print(request.query_string)
     output ={"messages": [{ "attachment":{"type":"template", "payload":{"template_type":"generic","elements":[]}}}]}
     testing_output = z.parse("search","lat="+str(session["latitude"]) + ","+ "lon="+str(session["longitude"]) + ","+"collection_id="+str(collection_id))
-    for i in range(len(testing_output["restaurants"])):
+    k = 8
+	if testing_output["results_found"]<8:
+        k = testing_output["results_found"]
+    for i in range(k)):
 	#len(testing_output["collections"])):
         restaurant_dict={}
         button=[]
