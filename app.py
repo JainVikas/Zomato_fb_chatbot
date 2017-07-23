@@ -70,9 +70,9 @@ def collection():
     z = Zomato("ZOMATO-API-KEY")
     collection_id = request.args.get('collection_id')
     print(request.query_string)
-    testing_output = z.parse("collections","lat="+str(session["latitude"]) + ","+ "lon="+str(session["longitude"]) + ","+"collection_id="+str(collection_id))
+    testing_output = z.parse("search","lat="+str(session["latitude"]) + ","+ "lon="+str(session["longitude"]) + ","+"collection_id="+str(collection_id))
     print(testing_output)
-    return 
+    return jsonify({ "messages": [   {"text": "Welcome to our store!"},   {"text": "How can I help you?"}]})
 if __name__ == '__main__':
   app.debug = True
   port = int(os.environ.get('PORT', 5000))
