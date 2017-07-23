@@ -121,7 +121,7 @@ def restaurant():
 @app.route('/call')
 def call():
     output ={"messages": [{ "attachment":{"type":"template", "payload":{"template_type":"button", "text":"so what's next"}}}]}
-    output["messages"][0]["attachment"]["payload"]["buttons"]=[{"type":"phone_number", "phone_number": "+919538668889","title": "Call to reserve"},{"type":"show_block", "block_name":"restaurant","title":"Try another"}]
+    output["messages"][0]["attachment"]["payload"]["buttons"]=[{"type":"phone_number", "phone_number": "+919538668889","title": "Call to reserve"},{"type":"show_block", "block_name":"collection","title":"Try another"}]
     return jsonify(output)
 
 if __name__ == '__main__':
