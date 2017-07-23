@@ -108,10 +108,11 @@ def restaurant():
         #button_dict["title"]= "Check Reviews"
         #button.append(button_dict)
         review_dict["title"] = "Rating: " + str(testing_output["user_reviews"][i]["review"]["rating"])
-        review_dict["subtitle"] = "Average cost for 2: " + str(testing_output["user_reviews"][i]["review"]["review_text"])
+        review_dict["subtitle"] = testing_output["user_reviews"][i]["review"]["review_text"]
         review_dict["image_url"] = ""
         #restaurant_dict["buttons"] = button 
         output["messages"][0]["attachment"]["payload"]["elements"].append(review_dict)
+    output["messages"].append({{ "attachment":{"type":"template", "payload":{"template_type":"button","buttons":[{"type":"phone_number", "phone_number": "+919538668889","title": "Call to reserve"}]}}}})
     print(testing_output)
     return jsonify(output)
 if __name__ == '__main__':
