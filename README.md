@@ -1,16 +1,19 @@
-# Api.ai - sample webhook implementation in Python
+Inspired from a recent post about a weekend project of Mike William - ArtBot and a free weekend, i started with what I had in mind from quite a time.
 
-This is a really simple webhook implementation that gets Api.ai classification JSON (i.e. a JSON output of Api.ai /query endpoint) and returns a fulfillment response.
+I wanted to create a very basic FB chatbot based on Zomato API which does only 1 task for now, steps goes as follows:
+a. Provide your location,
+b. Select the collection you would like to explore
+c. Choose the restaurant and read reviews,
+d. Make a call to reserve your table. or try and check another restaurant. 
 
-More info about Api.ai webhooks could be found here:
-[Api.ai Webhook](https://docs.api.ai/docs/webhook)
+I thought of working with API.ai first but then moved to ChatFuel, never worked with CF so was quite excited. I liked the user interface and documentation provided by team and also the ease of integration with FB.
+Other technologies, used are Heroku to deploy and Python to create RESTApi services.
 
-# Deploy to:
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+Overall personally quite happy with the output given the limited time, it really helped me focusing on the problem and exploring some new things.
 
-# What does the service do?
-It's a weather information fulfillment service that uses [Yahoo! Weather API](https://developer.yahoo.com/weather/).
-The services takes the `geo-city` parameter from the action, performs geolocation for the city and requests weather information from Yahoo! Weather public API. 
+You can play with it here: m.me/417099305335785 
+Feel free to drop a message or comment here in case of any feedback, I would love to hear some.
 
-The service packs the result in the Api.ai webhook-compatible response JSON and returns it to Api.ai.
 
+Also credit to VikramjitRoy for the Zomato Python wrapper, it helped me focus more on the chatbot rather than creating a wrapper.
+https://github.com/VikramjitRoy/Zomato-Python
