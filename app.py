@@ -33,8 +33,10 @@ def webhook_manually():
 def webhook_viaFB():
     z = Zomato("ZOMATO-API-KEY")
     query_string = request.query_string
-    latitude = request.args.get('latitude')
-    longitude = request.args.get('longitude')
+    if request.args.get('latitude') is not None:
+        session["latitude"] = request.args.get('latitude')
+    if request.args.get('longitude') is not None:
+        session["longitude"]= request.args.get('longitude')
     category = request.args.get('text')
     cuisine = request.args.get('cuisine')
     print(cuisine)
@@ -42,36 +44,32 @@ def webhook_viaFB():
     print(latitude)
     print(query_string)
     output ={"messages": [{ "attachment":{"type":"template", "payload":{"template_type":"generic","elements":[]}}}]}
-    testing_output = z.parse("collections","lat="+str(latitude) + ","+ "lon="+str(longitude))
+    testing_output = z.parse("collections","lat="+str(session["latitude"]) + ","+ "lon="+str(session["longitude"]))
     #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
-    for i in range(len(testing_output["collections"])):
-        collection_dict={}
-        button=[]
-        button_dict={}
-        button_dict["type"]="web_url"
-        button_dict["url"]= "https://evening-inlet-61642.herokuapp.com/collection?"+str(testing_output["collections"][1]["collection"]["collection_id"])
-        button_dict["title"]= "Explore"
-        button.append(button_dict)
-        collection_dict["title"] = testing_output["collections"][1]["collection"]["title"]
-        collection_dict["subtitle"] = testing_output["collections"][1]["collection"]["description"]
-        collection_dict["image_url"] = testing_output["collections"][1]["collection"]["image_url"]
-        output["messages"][0]["attachment"]["payload"]["elements"].append(collection_dict)
-        output["messages"][0]["attachment"]["payload"]["elements"].append(button)
+    #for i in range(len(testing_output["collections"])):
+    collection_dict={}
+    button=[]
+    button_dict={}
+    button_dict["type"]="web_url"
+    button_dict["url"]= "https://evening-inlet-61642.herokuapp.com/collection?collection_id="+str(testing_output["collections"][1]["collection"]["collection_id"])
+    button_dict["title"]= "Explore"
+    button.append(button_dict)
+    collection_dict["title"] = testing_output["collections"][1]["collection"]["title"]
+    collection_dict["subtitle"] = testing_output["collections"][1]["collection"]["description"]
+    collection_dict["image_url"] = testing_output["collections"][1]["collection"]["image_url"]
+    output["messages"][0]["attachment"]["payload"]["elements"].append(collection_dict)
+    output["messages"][0]["attachment"]["payload"]["elements"].append(button)
     print(output)
-    return jsonify({'messages': [{'attachment': {'type': 'template', 'payload': {'template_type': 'generic', 'elements': [{'title': 'The most popular restaurants in town this week', 'image_url': 'https://b.zmtcdn.com/data/collections/e140962ec7eecbb851155fe0bb0cd28c_1463395649.jpg','default_action':{'type':'web_url','url':'https://google.com'}},{'title': 'The most popular restaurants in town this week', 'image_url': 'https://b.zmtcdn.com/data/collections/e140962ec7eecbb851155fe0bb0cd28c_1463395649.jpg','default_action':{'type':'web_url','url':'https://www.facebook.com'}}]}}}]})   	
-    #return jsonify(output)   	
+    #return jsonify({'messages': [{'attachment': {'type': 'template', 'payload': {'template_type': 'generic', 'elements': [{'title': 'The most popular restaurants in town this week', 'image_url': 'https://b.zmtcdn.com/data/collections/e140962ec7eecbb851155fe0bb0cd28c_1463395649.jpg','default_action':{'type':'web_url','url':'https://google.com'}},{'title': 'The most popular restaurants in town this week', 'image_url': 'https://b.zmtcdn.com/data/collections/e140962ec7eecbb851155fe0bb0cd28c_1463395649.jpg','default_action':{'type':'web_url','url':'https://www.facebook.com'}}]}}}]})   	
+    return jsonify(output)   	
     #return jsonify({"messages":[{"attachment":{"type":"template","payload":{"template_type":"generic","elements":[{"title":"Classic White T-Shirt","image_url":"http://petersapparel.parseapp.com/img/item100-thumb.png","subtitle":"Soft white cotton t-shirt is back in style","buttons":[{"type":"web_url","url":"https://petersapparel.parseapp.com/view_item?item_id=100","title":"View Item"},{"type":"web_url","url":"https://petersapparel.parseapp.com/buy_item?item_id=100","title":"Buy Item"}]},{"title":"Classic Grey T-Shirt","image_url":"http://petersapparel.parseapp.com/img/item101-thumb.png","subtitle":"Soft gray cotton t-shirt is back in style"}]}}}]})   	
 @app.route('/collection', methods=['POST', 'GET'])
 def collection():
-    
-	
-	
-	
-	
-	
-	
-	
-	return 
+    z = Zomato("ZOMATO-API-KEY")
+    collection_id = request.args.get('collection_id')
+    testing_output = z.parse("collections","lat="+str(session["latitude"]) + ","+ "lon="+str(session["longitude"]) + ","+"collection_id="+str(collection_id)))
+    print(testing_output)
+    return 
 if __name__ == '__main__':
   app.debug = True
   port = int(os.environ.get('PORT', 5000))
