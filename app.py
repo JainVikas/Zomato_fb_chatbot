@@ -57,7 +57,7 @@ def webhook_viaFB():
     collection_dict["title"] = testing_output["collections"][1]["collection"]["title"]
     collection_dict["subtitle"] = testing_output["collections"][1]["collection"]["description"]
     collection_dict["image_url"] = testing_output["collections"][1]["collection"]["image_url"]
-	output["messages"][0]["attachment"]["payload"]["elements"][1]["buttons"]= append(button)
+    collection_dict["buttons"] = button 
     output["messages"][0]["attachment"]["payload"]["elements"].append(collection_dict)
     
     print(output)
