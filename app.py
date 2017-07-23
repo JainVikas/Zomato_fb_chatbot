@@ -46,7 +46,8 @@ def webhook_viaFB():
     output ={"messages": [{ "attachment":{"type":"template", "payload":{"template_type":"generic","elements":[]}}}]}
     testing_output = z.parse("collections","lat="+str(session["latitude"]) + ","+ "lon="+str(session["longitude"]))
     #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
-    for i in range(6)#len(testing_output["collections"])):
+    for i in range(6):
+	#len(testing_output["collections"])):
         collection_dict={}
         button=[]
         button_dict={}
