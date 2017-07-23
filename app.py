@@ -71,7 +71,7 @@ def collection():
     print(request.query_string)
     output ={"messages": [{ "attachment":{"type":"template", "payload":{"template_type":"generic","elements":[]}}}]}
     testing_output = z.parse("search","lat="+str(session["latitude"]) + ","+ "lon="+str(session["longitude"]) + ","+"collection_id="+str(collection_id))
-	for i in range(6):
+    for i in range(6):
 	#len(testing_output["collections"])):
         restaurant_dict={}
         #button=[]
