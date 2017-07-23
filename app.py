@@ -95,7 +95,7 @@ def restaurant():
     z = Zomato("ZOMATO-API-KEY")
     res_id = request.args.get('res_id')
     print(request.query_string)
-    output ={"messages": [{ "attachment":{"type":"template", "payload":{"template_type":"generic","elements":[]}}}]}
+    output ={"messages": [{ "attachment":{"type":"template", "payload":{"template_type":"list","elements":[]}}}]}
     testing_output = z.parse("reviews","res_id="+str(res_id))
     for i in range(testing_output["reviews_shown"]):
 	#len(testing_output["collections"])):
@@ -114,7 +114,7 @@ def restaurant():
         #restaurant_dict["buttons"] = button 
         output["messages"][0]["attachment"]["payload"]["elements"].append(review_dict)
     #output["messages"][0]["attachment"]["payload"]["elements"].append({"redirect_to_blocks":["call"]})
-    output["messages"][0]["attachment"]["payload"]["elements"].append({"buttons":[{"type":"phone_number", "phone_number": "+919538668889","title": "Call to reserve"},{"type":"show_block", "block_name":"restaurant","title":"Try another"}]})
+    output["messages"][0]["attachment"]["payload"]["buttons"]=[{"type":"phone_number", "phone_number": "+919538668889","title": "Call to reserve"},{"type":"show_block", "block_name":"restaurant","title":"Try another"}]
     print(output)
     return jsonify(output)
 
