@@ -46,14 +46,13 @@ def webhook_viaFB():
     output ={"messages": [{ "attachment":{"type":"template", "payload":{"template_type":"generic","elements":[]}}}]}
     testing_output = z.parse("collections","lat="+str(session["latitude"]) + ","+ "lon="+str(session["longitude"]))
     #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
-    for i in range(6):
-	#len(testing_output["collections"])):
+    for i in range(6)#len(testing_output["collections"])):
         collection_dict={}
         button=[]
         button_dict={}
         button_dict["type"]="show_block"
         button_dict["block_name"]= "collection" 
-        button_dict["url"]= "https://evening-inlet-61642.herokuapp.com/collection?collection_id="+str(testing_output["collections"][1]["collection"]["collection_id"])
+        button_dict["set_attributes"] = {"collection_id": testing_output["collections"][i]["collection"]["collection_id"]} 
         button_dict["title"]= "Explore"
         button.append(button_dict)
         collection_dict["title"] = testing_output["collections"][i]["collection"]["title"]
