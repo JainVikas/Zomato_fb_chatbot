@@ -41,10 +41,16 @@ def webhook_viaFB():
     print(longitude)
     print(latitude)
     print(query_string)
-    testing_output = z.parse("search","lat="+str(latitude) + ","+ "lon="+str(longitude) + "," + "category=" +str(category))
+    output ={"messages": [{ "attachment":{"type":"template", "payload":{"template_type":"generic","elements":[]}}}]}
+    testing_output = z.parse("collections","lat="+str(latitude) + ","+ "lon="+str(longitude))
     #output of parse is a dict, so quite convinient to find details using inbuit features of python dict
-    
-    return jsonify({"messages": [{"text": "How can I help you?"}, {"text": "your api key is"+testing_output["restaurants"][0]["restaurant"]["apikey"]}]})   	
+    for i in range(len(ttesting_output["collections"])
+        collection_dict={}
+        collection_dict["tiltle"] = testing_output["collections"][i]["collection"]["description"]
+        collection_dict["image_url"] = testing_output["collections"][i]["collection"]["image_url"]
+        output["messages"][0]["attachment"]["payload"]["elements"].append(collection_dict)
+    #return jsonify({"messages": [{"text": "How can I help you?"}, {"text": "your api key is"+testing_output["restaurants"][0]["restaurant"]["apikey"]}]})   	
+    return jsonify(output)   	
     #return jsonify({"messages":[{"attachment":{"type":"template","payload":{"template_type":"generic","elements":[{"title":"Classic White T-Shirt","image_url":"http://petersapparel.parseapp.com/img/item100-thumb.png","subtitle":"Soft white cotton t-shirt is back in style","buttons":[{"type":"web_url","url":"https://petersapparel.parseapp.com/view_item?item_id=100","title":"View Item"},{"type":"web_url","url":"https://petersapparel.parseapp.com/buy_item?item_id=100","title":"Buy Item"}]},{"title":"Classic Grey T-Shirt","image_url":"http://petersapparel.parseapp.com/img/item101-thumb.png","subtitle":"Soft gray cotton t-shirt is back in style","buttons":[{"type":"web_url","url":"https://petersapparel.parseapp.com/view_item?item_id=101","title":"View Item"},{"type":"web_url","url":"https://petersapparel.parseapp.com/buy_item?item_id=101","title":"Buy Item"}]}]}}}]})   	
 if __name__ == '__main__':
   app.debug = True
