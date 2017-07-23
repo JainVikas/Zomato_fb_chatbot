@@ -72,7 +72,7 @@ def collection():
     output ={"messages": [{ "attachment":{"type":"template", "payload":{"template_type":"generic","elements":[]}}}]}
     testing_output = z.parse("search","lat="+str(session["latitude"]) + ","+ "lon="+str(session["longitude"]) + ","+"collection_id="+str(collection_id))
     k = 8
-	if testing_output["results_found"]<8:
+    if testing_output["results_found"]<8:
         k = testing_output["results_found"]
     for i in range(k)):
 	#len(testing_output["collections"])):
