@@ -58,7 +58,7 @@ def webhook_viaFB():
     collection_dict["subtitle"] = testing_output["collections"][1]["collection"]["description"]
     collection_dict["image_url"] = testing_output["collections"][1]["collection"]["image_url"]
     output["messages"][0]["attachment"]["payload"]["elements"].append(collection_dict)
-    output["messages"][0]["attachment"]["payload"]["elements"].append(button)
+    output["messages"][0]["attachment"]["payload"]["elements"]["buttons"]= button
     print(output)
     #return jsonify({'messages': [{'attachment': {'type': 'template', 'payload': {'template_type': 'generic', 'elements': [{'title': 'The most popular restaurants in town this week', 'image_url': 'https://b.zmtcdn.com/data/collections/e140962ec7eecbb851155fe0bb0cd28c_1463395649.jpg','default_action':{'type':'web_url','url':'https://google.com'}},{'title': 'The most popular restaurants in town this week', 'image_url': 'https://b.zmtcdn.com/data/collections/e140962ec7eecbb851155fe0bb0cd28c_1463395649.jpg','default_action':{'type':'web_url','url':'https://www.facebook.com'}}]}}}]})   	
     return jsonify(output)   	
