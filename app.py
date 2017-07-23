@@ -74,17 +74,42 @@ def collection():
     for i in range(len(testing_output["restaurants"])):
 	#len(testing_output["collections"])):
         restaurant_dict={}
-        #button=[]
-        #button_dict={}
-        #button_dict["type"]="show_block"
-        #button_dict["block_name"]= "collection" 
-        #button_dict["set_attributes"] = {"collection_id": testing_output["collections"][i]["collection"]["collection_id"]} 
-        #button_dict["title"]= "Explore"
-        #button.append(button_dict)
+        button=[]
+        button_dict={}
+        button_dict["type"]="show_block"
+        button_dict["block_name"]= "restaurant" 
+        button_dict["set_attributes"] = {"res_id": testing_output["restaurants"][i]["restaurant"]["id"]} 
+        button_dict["title"]= "Check Reviews"
+        button.append(button_dict)
         restaurant_dict["title"] = testing_output["restaurants"][i]["restaurant"]["name"]
         restaurant_dict["subtitle"] = "Average cost for 2: " + str(testing_output["restaurants"][i]["restaurant"]["average_cost_for_two"])
         restaurant_dict["image_url"] = testing_output["restaurants"][i]["restaurant"]["featured_image"]
-        #restaurant_dict["buttons"] = button 
+        restaurant_dict["buttons"] = button 
+        output["messages"][0]["attachment"]["payload"]["elements"].append(restaurant_dict)
+    print(testing_output)
+    return jsonify(output)
+
+@app.route('/restaurant', methods=['POST', 'GET'])
+def restaurant():
+    z = Zomato("ZOMATO-API-KEY")
+    collection_id = request.args.get('res_id')
+    print(request.query_string)
+    output ={"messages": [{ "attachment":{"type":"template", "payload":{"template_type":"generic","elements":[]}}}]}
+    testing_output = z.parse("search","lat="+str(session["latitude"]) + ","+ "lon="+str(session["longitude"]) + ","+"collection_id="+str(collection_id))
+    for i in range(len(testing_output["restaurants"])):
+	#len(testing_output["collections"])):
+        restaurant_dict={}
+        button=[]
+        button_dict={}
+        button_dict["type"]="show_block"
+        button_dict["block_name"]= "restaurant" 
+        button_dict["set_attributes"] = {"res_id": testing_output["restaurants"][i]["restaurant"]["id"]} 
+        button_dict["title"]= "Check Reviews"
+        button.append(button_dict)
+        restaurant_dict["title"] = testing_output["restaurants"][i]["restaurant"]["name"]
+        restaurant_dict["subtitle"] = "Average cost for 2: " + str(testing_output["restaurants"][i]["restaurant"]["average_cost_for_two"])
+        restaurant_dict["image_url"] = testing_output["restaurants"][i]["restaurant"]["featured_image"]
+        restaurant_dict["buttons"] = button 
         output["messages"][0]["attachment"]["payload"]["elements"].append(restaurant_dict)
     print(testing_output)
     return jsonify(output)
