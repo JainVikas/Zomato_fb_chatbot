@@ -95,7 +95,7 @@ def restaurant():
     z = Zomato("ZOMATO-API-KEY")
     res_id = request.args.get('res_id')
     print(request.query_string)
-    output ={"messages": { "attachment":{"type":"template", "payload":{"template_type":"list","elements":[]}}}}
+    output ={"messages": { "attachment":{"type":"template", "payload":{"template_type":"generic","elements":[]}}}}
     testing_output = z.parse("reviews","res_id="+str(res_id))
     for i in range(testing_output["reviews_shown"]):
 	#len(testing_output["collections"])):
