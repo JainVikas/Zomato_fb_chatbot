@@ -3,6 +3,6 @@ future==0.16.0
 urllib3==1.21.1
 pandas==0.20.2
 numpy==1.13.0rc1
-Werkzeug==0.12.2
+Werkzeug==0.15.3
 
 
